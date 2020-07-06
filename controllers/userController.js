@@ -45,3 +45,19 @@ exports.signUp = async (req,res)=>{
         throw err;
     }
 };
+
+exports.idCheck = async (req,res)=>{
+    try{
+        const result = await user.idCheck(req);
+
+        if(result){
+            return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.ALREADY_ID));
+        }
+
+        // 성공
+        return res.status(statusCode.OK).send(util.successWithoutData(statusCode.OK,responseMessage.VALID_ID));
+    } catch(err){
+        return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR, err.message));
+        throw err;
+    }
+};
