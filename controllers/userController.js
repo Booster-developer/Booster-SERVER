@@ -13,8 +13,11 @@ exports.signUp = async (req,res)=>{
         return;
     }
 
-    //아이디 중복 확인 추가 해야 함
-
+    //아이디 중복 확인
+    if (await user.idCheck(req)) {
+        res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.ALREADY_ID));
+        return;
+    }
 
     const data = {user_name, user_university, user_id, user_pw};
 
