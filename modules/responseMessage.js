@@ -20,11 +20,15 @@ module.exports = {
     AUTH_SUCCESS: '인증에 성공했습니다.',
     ISSUE_SUCCESS: '새로운 토큰이 생성되었습니다.',
 
+    // 매장 관련
     READ_STORE_LIST_SUCCESS: '매장 리스트 가져오기 성공',
     READ_UNIV_LIST_SUCCESS: '대학교 리스트 가져오기 성공',
     READ_STORE_DETAIL_SUCCESS: '매장 상세 페이 가져오기 성공',
     REGISTER_STORE_FAVORITE_SUCCESS: '매장 즐겨찾기 등록 성공',
     ALREADY_REGISTERED_STORE_FAVORITE: '이미 즐겨찾기 등록된 매장입니다.',
 
-    DB_ERROR: 'DB 오류'
+    // 주문 관련
+    REGISTER_FILE_ORDER_SUCCESS:'매장, 파일 주문 등록 성공',
+
+   DB_ERROR: 'DB 오류'
 };
