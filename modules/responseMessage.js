@@ -22,6 +22,7 @@ module.exports = {
 
     READ_STORE_LIST_SUCCESS: '매장 리스트 가져오기 성공',
     READ_UNIV_LIST_SUCCESS: '대학교 리스트 가져오기 성공',
+    READ_STORE_DETAIL_SUCCESS: '매장 상세 페이지 가져오기 성공',
 
     DB_ERROR: 'DB 오류'
 };

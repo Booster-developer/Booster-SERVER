@@ -27,3 +27,18 @@ exports.readUnivList = async (req, res) => {
         throw err;
     }
 }
+
+exports.readStoreDetail = async (req, res) => {
+    try{
+        const result = await store.readStoreDetail(req);
+
+        // 매장 즐겨찾기 유무
+        if(await store.isFavorite(req) === undefined) result.store_favorite = 0;
+        else result.store_favorite = 1;
+        // 성공
+        return res.status(statusCode.OK).send(util.success(statusCode.OK,responseMessage.READ_STORE_DETAIL_SUCCESS, result));
+    } catch(err){
+        return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR, err.message));
+        throw err;
+    }
+}
