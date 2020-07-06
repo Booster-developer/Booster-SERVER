@@ -12,3 +12,14 @@ exports.readStoreList = async (req, res)=>{
     }
 };
 
+exports.readUnivList = async (req, res) => {
+    const query = `SELECT univ_name FROM UNIVERSITY;`;
+    try{
+        const result = await pool.queryParam(query);
+        return result;
+    } catch (err) {
+        console.log('ERROR : ', err);
+        throw err;
+    }
+}
+
