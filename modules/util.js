@@ -2,7 +2,7 @@ module.exports = {
     success: (status, message, data) => {
         return {
             status: status,
-            success: success,
+            success: true,
             message: message,
             data: data
         }
@@ -10,7 +10,7 @@ module.exports = {
     successWithoutData: (status, message, data) => {
         return {
             status: status,
-            success: success,
+            success: true,
             message: message
         }
     },
