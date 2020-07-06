@@ -17,6 +17,22 @@ exports.registerFile = async (req, order_idx, res)=> {
     const query = `INSERT INTO Booster.FILE(order_idx, file_name, file_path) VALUES(${order_idx},"${req.file.originalname}","${req.file.location}");`;
     try {
         const result = await pool.queryParam(query);
+        const file_idx = result.insertId;
+        return file_idx;
+    } catch (err) {
+        console.log('ERROR : ', err);
+        throw err;
+    }
+};
+
+exports.registerOptions = async (req, res)=> {
+    const query = `UPDATE FILE SET file_copy_number = ${req.body.file_copy_number}, file_sided_type = "${req.body.file_sided_type}",
+                file_direction= "${req.body.file_direction}", file_range_start=${req.body.file_range_start}, 
+                file_range_end= ${req.body.file_range_end}, file_color= "${req.body.file_color}"
+                WHERE file_idx = ${req.params.file_idx};`;
+    try {
+        const result = await pool.queryParam(query);
+        return result;
     } catch (err) {
         console.log('ERROR : ', err);
         throw err;
