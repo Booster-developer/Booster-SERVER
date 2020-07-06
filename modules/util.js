@@ -7,7 +7,7 @@ module.exports = {
             data: data
         }
     },
-    successWithoutData: (status, message, data) => {
+    successWithoutData: (status, message) => {
         return {
             status: status,
             success: true,
