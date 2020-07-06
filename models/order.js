@@ -14,7 +14,7 @@ exports.registerOrder = async (req, res)=> {
 };
 
 exports.registerFile = async (req, order_idx, res)=> {
-    const query = `INSERT INTO Booster.FILE(order_idx, file_name, file_path) VALUES(${order_idx},"test","test");`;
+    const query = `INSERT INTO Booster.FILE(order_idx, file_name, file_path) VALUES(${order_idx},"${req.file.originalname}","${req.file.location}");`;
     try {
         const result = await pool.queryParam(query);
     } catch (err) {
