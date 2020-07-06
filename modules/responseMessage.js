@@ -30,6 +30,7 @@ module.exports = {
     // 주문 관련
     REGISTER_FILE_ORDER_SUCCESS:'매장, 파일 주문 등록 성공',
     REGISTER_OPTIONS_ORDER_SUCCESS:'옵션 선택 등록 성공',
+    COMPLETE_PAYMENT_ORDER_SUCCESS:'주문 결제 완료 성공',
 
    DB_ERROR: 'DB 오류'
 };

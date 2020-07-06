@@ -38,3 +38,16 @@ exports.registerOptions = async (req, res)=> {
         throw err;
     }
 };
+
+exports.completePayment = async (req, res)=> {
+    console.log(req.body)
+    const query = `UPDATE Booster.ORDER SET order_comment="${req.body.order_comment}", order_state=1, order_pickup_time= "${req.body.order_pickup_time}"
+                WHERE order_idx = ${req.params.order_idx}`;
+    try {
+        const result = await pool.queryParam(query);
+        return result;
+    } catch (err) {
+        console.log('ERROR : ', err);
+        throw err;
+    }
+};
