@@ -46,3 +46,14 @@ exports.isFavorite = async (req, res) => {
         throw err;
     }
 }
+
+
+exports.registerFavorite = async (req, res) => {
+    const query = `INSERT INTO Booster.FAVORITE(user_idx, store_idx) VALUES(${req.user_idx},${req.params.store_idx});`;
+    try{
+        const result = await pool.queryParam(query);
+    } catch (err) {
+        console.log('ERROR : ', err);
+        throw err;
+    }
+}
