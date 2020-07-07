@@ -3,6 +3,7 @@ const statusCode = require('../modules/statusCode');
 const util = require('../modules/util');
 const order = require('../models/order');
 const moment = require('moment');
+const getPage = require('../modules/getPage');
 
 exports.registerStore = async (req,res)=>{
     try{
@@ -152,6 +153,8 @@ exports.readOptions = async (req,res)=>{
         else fileOption.file_range = fileOption.file_range_start +'~'+ fileOption.file_range_end;
         delete fileOption.file_range_end;
         delete fileOption.file_range_start;
+
+        await getPage();
 
         // 성공
         return res.status(statusCode.OK).send(util.success(statusCode.OK,responseMessage.READ_PAYMENT_INFO_SUCCESS, fileOption));
