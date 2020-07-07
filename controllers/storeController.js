@@ -47,7 +47,7 @@ exports.registerFavorite = async (req, res) => {
     try{
         // 이미 즐겨찾는 매장인지 확인
         if(await store.isFavorite(req) !== undefined)
-            return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.ALREADY_REGISTERED_STORE_FAVORITE));
+            return res.status(statusCode.OK).send(util.fail(statusCode.BAD_REQUEST, responseMessage.ALREADY_REGISTERED_STORE_FAVORITE));
 
         await store.registerFavorite(req);
         // 성공
