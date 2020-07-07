@@ -80,12 +80,12 @@ ex. feat [GET] /test
 |  promise-mysql                |  ^4.1.3                 |
 |  python-shell                |   ^2.0.1                |
 |  rand-token                |  ^1.0.1                 |
-|                  |                   |
+|  pbkdf2                |   ^3.0.17                |
 
 
 
 
-## ✔️ Team Role
+  ## ✔️ Team Role
 
 * 심다은
   * DB 설계
