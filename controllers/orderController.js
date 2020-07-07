@@ -62,3 +62,26 @@ exports.completePayment = async (req,res)=>{
         throw err;
     }
 };
+
+exports.readWaitingList = async (req,res)=>{
+    try{
+        const store_info = await order.readStoreInfo(req);
+        const file_info = await order.readFileInfo(req);
+        let order_price= 0;
+        file_info.forEach(function (element) {
+            order_price += element.file_price;
+            delete element.file_price;
+        })
+        const result = {
+            store_name: store_info.store_name,
+            store_address: store_info.store_address,
+            file_info,
+            order_price: order_price
+        }
+        // 성공
+        return res.status(statusCode.OK).send(util.success(statusCode.OK,responseMessage.READ_WAITING_LIST_SUCCESS, result));
+    } catch(err){
+        return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR, err.message));
+        throw err;
+    }
+};

@@ -66,3 +66,28 @@ exports.completePayment = async (req, res)=> {
     }
 };
 
+
+exports.readStoreInfo = async (req, res)=> {
+    const query = `SELECT store_name, store_address FROM Booster.ORDER JOIN Booster.STORE USING(store_idx) 
+                WHERE order_idx = ${req.params.order_idx};`;
+    try {
+        const result = await pool.queryParam(query);
+        return result[0];
+    } catch (err) {
+        console.log('ERROR : ', err);
+        throw err;
+    }
+};
+
+exports.readFileInfo = async (req, res)=> {
+    const query = `SELECT file_idx, file_name, file_path, file_price FROM Booster.FILE JOIN Booster.ORDER USING(order_idx) 
+                WHERE order_idx = ${req.params.order_idx};`;
+    try {
+        const result = await pool.queryParam(query);
+        return result;
+    } catch (err) {
+        console.log('ERROR : ', err);
+        throw err;
+    }
+};
+
