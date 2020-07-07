@@ -35,7 +35,7 @@ dev
 |-- dev_mh
 ```
 
-* **git commit message **
+* **git commit message**
 ```json
 - 기능(feat): 새로운 기능을 추가
 - 버그(fix): 버그 수정
