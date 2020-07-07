@@ -24,3 +24,14 @@ exports.idCheck = async (req, res)=> {
         throw err;
     }
 };
+
+exports.signIn = async (req, res)=> {
+    const query = `SELECT * FROM ${table} WHERE user_id = '${req.body.user_id}'`;
+    try {
+        const result = await pool.queryParam(query);
+        return result;
+    } catch (err) {
+        console.log('ERROR : ', err);
+        throw err;
+    }
+};

@@ -4,6 +4,7 @@ const statusCode = require('../modules/statusCode');
 const util = require('../modules/util');
 const encrypt = require('../modules/crypto');
 const crypto = require('crypto');
+const jwt = require('../modules/jwt');
 
 exports.signUp = async (req,res)=>{
     const {user_name, user_university, user_id, user_pw} = req.body;
@@ -59,6 +60,44 @@ exports.idCheck = async (req,res)=>{
 
         // 성공
         return res.status(statusCode.OK).send(util.successWithoutData(statusCode.OK,responseMessage.VALID_ID));
+    } catch(err){
+        return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR, err.message));
+        throw err;
+    }
+};
+
+exports.signIn = async (req,res)=>{
+    const { user_id, user_pw } = req.body;
+
+    if (!user_id || !user_pw) {
+        res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
+        return;
+    }
+
+    try{
+        const userResult = await user.signIn(req);
+        if (userResult[0] === undefined) {
+            return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NO_USER));
+        }
+
+        const hashed = crypto.pbkdf2Sync(
+            user_pw,
+            userResult[0].user_salt,
+            1,
+            32,
+            "sha512").toString("hex");
+
+        if (hashed !== userResult[0].user_password) {
+            return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.MISS_MATCH_PW));
+        }
+
+        const {token,_} = await jwt.sign(userResult[0]);
+
+        // 성공
+        return res.status(statusCode.OK).send(util.success(statusCode.OK,responseMessage.LOGIN_SUCCESS, {
+            accessToken: token
+        }));
+
     } catch(err){
         return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR, err.message));
         throw err;
