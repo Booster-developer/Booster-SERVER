@@ -121,7 +121,7 @@ exports.readPaymentInfo = async (req,res)=>{
             // 전체 인쇄일 경우
             if(element.file_range_end === 0) element.file_range= '전체 페이지';
             // 범위 설정 인쇄일 경우
-            else element.file_range = element.file_range_end +'~'+ element.file_range_start;
+            else element.file_range = element.file_range_start +'~'+ element.file_range_end;
             delete element.file_range_end;
             delete element.file_range_start;
         })
@@ -149,7 +149,7 @@ exports.readOptions = async (req,res)=>{
         // 전체 인쇄일 경우
         if(fileOption.file_range_end === 0) fileOption.file_range= '전체 페이지';
         // 범위 설정 인쇄일 경우
-        else fileOption.file_range = fileOption.file_range_end +'~'+ fileOption.file_range_start;
+        else fileOption.file_range = fileOption.file_range_start +'~'+ fileOption.file_range_end;
         delete fileOption.file_range_end;
         delete fileOption.file_range_start;
 
