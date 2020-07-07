@@ -39,8 +39,22 @@ exports.registerOptions = async (req, res)=> {
     }
 };
 
+exports.getTypePrice = async (req, res)=> {
+    const query = `SELECT price_color_double, price_color_single, price_gray_double, price_gray_single
+                FROM ((Booster.FILE JOIN Booster.ORDER USING(order_idx)) 
+                JOIN Booster.STORE USING(store_idx)) 
+                JOIN Booster.PRICE USING(price_idx) 
+                WHERE file_idx = ${req.params.file_idx};`;
+    try {
+        const result = await pool.queryParam(query);
+        return result[0];
+    } catch (err) {
+        console.log('ERROR : ', err);
+        throw err;
+    }
+};
+
 exports.completePayment = async (req, res)=> {
-    console.log(req.body)
     const query = `UPDATE Booster.ORDER SET order_comment="${req.body.order_comment}", order_state=1, order_pickup_time= "${req.body.order_pickup_time}"
                 WHERE order_idx = ${req.params.order_idx}`;
     try {
@@ -51,3 +65,4 @@ exports.completePayment = async (req, res)=> {
         throw err;
     }
 };
+
