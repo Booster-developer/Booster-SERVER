@@ -55,8 +55,8 @@ exports.getTypePrice = async (req, res)=> {
     }
 };
 
-exports.completePayment = async (req, res)=> {
-    const query = `UPDATE Booster.ORDER SET order_comment="${req.body.order_comment}", order_state=1, order_pickup_time= "${req.body.order_pickup_time}"
+exports.registerOrderRequest = async (req, order_time, res)=> {
+    const query = `UPDATE Booster.ORDER SET order_comment="${req.body.order_comment}", order_state=1, order_time= "${order_time}"
                 WHERE order_idx = ${req.params.order_idx}`;
     try {
         const result = await pool.queryParam(query);

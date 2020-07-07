@@ -2,6 +2,7 @@ const responseMessage = require('../modules/responseMessage');
 const statusCode = require('../modules/statusCode');
 const util = require('../modules/util');
 const order = require('../models/order');
+const moment = require('moment');
 
 exports.registerStore = async (req,res)=>{
     try{
@@ -61,12 +62,13 @@ exports.registerOptions = async (req,res)=>{
     }
 };
 
-exports.completePayment = async (req,res)=>{
+exports.registerOrderRequest = async (req,res)=>{
     try{
-        await order.completePayment(req);
+        const orderTime = moment().format('YYYY.MM.DD HH:mm');
+        await order.registerOrderRequest(req, orderTime);
 
         // 성공
-        return res.status(statusCode.OK).send(util.successWithoutData(statusCode.OK,responseMessage.REGISTER_OPTIONS_ORDER_SUCCESS));
+        return res.status(statusCode.OK).send(util.successWithoutData(statusCode.OK,responseMessage.REGISTER_ORDER_REQUEST_SUCCESS));
     } catch(err){
         return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR, err.message));
         throw err;
