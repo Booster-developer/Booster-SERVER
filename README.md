@@ -11,7 +11,7 @@
 
 ## 📈 Workflow
 
-<img src="https://user-images.githubusercontent.com/45157374/86798602-eb6dbe80-c0ab-11ea-86cb-23cc73b472c1.png" width="80%"></img>
+<img src="https://github.com/Booster-developer/Booster-SERVER/blob/dev/images/main.png" width="80%"></img>
 
 
 
