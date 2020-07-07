@@ -1,6 +1,7 @@
 const pool = require('../modules/pool');
 
-exports.registerOrder = async (req, res)=> {
+exports.registerStore = async (req, res)=> {
+
     const query = `INSERT INTO Booster.ORDER(user_idx, store_idx, order_state) 
                     VALUES(${req.user_idx}, ${req.params.store_idx}, 0);`;
     try {

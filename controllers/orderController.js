@@ -3,9 +3,19 @@ const statusCode = require('../modules/statusCode');
 const util = require('../modules/util');
 const order = require('../models/order');
 
+exports.registerStore = async (req,res)=>{
+    try{
+        const order_idx = await order.registerStore(req);
+        // 성공
+        return res.status(statusCode.OK).send(util.success(statusCode.OK,responseMessage.REGISTER_STORE_ORDER_SUCCESS, {order_idx: order_idx}));
+    } catch(err){
+        return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR, err.message));
+        throw err;
+    }
+};
+
 exports.registerFile = async (req,res)=>{
     try{
-        const order_idx = await order.registerOrder(req);
         const file_idx = await order.registerFile(req, order_idx);
 
         // 성공
