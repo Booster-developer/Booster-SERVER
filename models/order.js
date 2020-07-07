@@ -55,8 +55,8 @@ exports.getTypePrice = async (req, res)=> {
     }
 };
 
-exports.registerOrderRequest = async (req, order_time, res)=> {
-    const query = `UPDATE Booster.ORDER SET order_comment="${req.body.order_comment}", order_state=1, order_time= "${order_time}"
+exports.registerOrderRequest = async (req, res)=> {
+    const query = `UPDATE Booster.ORDER SET order_comment="${req.body.order_comment}", order_state=1
                 WHERE order_idx = ${req.params.order_idx}`;
     try {
         const result = await pool.queryParam(query);
@@ -67,6 +67,28 @@ exports.registerOrderRequest = async (req, order_time, res)=> {
     }
 };
 
+exports.updateEngineInfo = async (req, order_price, order_time, res)=> {
+    const query = `INSERT INTO Booster.ENGINE(order_idx, engine_point, engine_time) VALUES(${req.params.order_idx}, ${order_price}, "${order_time}")`;
+    try {
+        const result = await pool.queryParam(query);
+        return result;
+    } catch (err) {
+        console.log('ERROR : ', err);
+        throw err;
+    }
+};
+
+exports.updateMyEngine = async (req, order_price, res)=> {
+    const query = `UPDATE Booster.USER SET user_point = user_point - ${order_price}
+                WHERE user_idx = ${req.user_idx}`;
+    try {
+        const result = await pool.queryParam(query);
+        return result;
+    } catch (err) {
+        console.log('ERROR : ', err);
+        throw err;
+    }
+};
 
 exports.readStoreInfo = async (req, res)=> {
     const query = `SELECT store_name, store_address FROM Booster.ORDER JOIN Booster.STORE USING(store_idx) 

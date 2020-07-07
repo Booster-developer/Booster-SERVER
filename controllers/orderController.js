@@ -64,8 +64,20 @@ exports.registerOptions = async (req,res)=>{
 
 exports.registerOrderRequest = async (req,res)=>{
     try{
+        // 주문 시간, 주문 총 금액(engine)
         const orderTime = moment().format('YYYY.MM.DD HH:mm');
-        await order.registerOrderRequest(req, orderTime);
+        const file_info = await order.readFileInfo(req);
+        let order_price= 0;
+        file_info.forEach(function (element) {
+            order_price += element.file_price;
+        })
+        await order.updateEngineInfo(req, order_price, orderTime);
+
+        // 주문 요청 사항 저장, 주문 상태 수
+        await order.registerOrderRequest(req);
+
+        // 내 엔진 업데이트 user
+        await order.updateMyEngine(req, order_price);
 
         // 성공
         return res.status(statusCode.OK).send(util.successWithoutData(statusCode.OK,responseMessage.REGISTER_ORDER_REQUEST_SUCCESS));
