@@ -141,3 +141,22 @@ exports.readPaymentInfo = async (req,res)=>{
         throw err;
     }
 };
+
+exports.readOptions = async (req,res)=>{
+    try{
+        const fileOption = await order.readFileOption2(req);
+        // 파일 페이지 범위
+        // 전체 인쇄일 경우
+        if(fileOption.file_range_end === 0) fileOption.file_range= '전체 페이지';
+        // 범위 설정 인쇄일 경우
+        else fileOption.file_range = fileOption.file_range_end +'~'+ fileOption.file_range_start;
+        delete fileOption.file_range_end;
+        delete fileOption.file_range_start;
+
+        // 성공
+        return res.status(statusCode.OK).send(util.success(statusCode.OK,responseMessage.READ_PAYMENT_INFO_SUCCESS, fileOption));
+    } catch(err){
+        return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR, err.message));
+        throw err;
+    }
+};

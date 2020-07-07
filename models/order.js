@@ -140,3 +140,15 @@ exports.readFileOption = async (req, res)=> {
         throw err;
     }
 };
+
+exports.readFileOption2 = async (req, res)=> {
+    const query = `SELECT file_color, file_direction, file_sided_type, file_collect, file_range_start, file_range_end, file_copy_number 
+                FROM Booster.FILE WHERE file_idx = ${req.params.file_idx};`;
+    try {
+        const result = await pool.queryParam(query);
+        return result[0];
+    } catch (err) {
+        console.log('ERROR : ', err);
+        throw err;
+    }
+};
