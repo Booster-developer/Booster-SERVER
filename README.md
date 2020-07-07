@@ -13,7 +13,7 @@
 
 <img src="https://user-images.githubusercontent.com/45157374/86798602-eb6dbe80-c0ab-11ea-86cb-23cc73b472c1.png" width="80%"></img>
 
-## Code Convention
+## 🤙 Code Convention
 * camelcase 사용(단, DB 관련 내용은 snakecase 사용)
 
 * var 보다는 let,const 사용
@@ -72,7 +72,7 @@ ex. feat [GET] /test
   }
 ```
 
-## Team Role
+## 🔆 Team Role
 
 * 심다은
   * DB 설계
