@@ -13,7 +13,11 @@
 
 <img src="https://user-images.githubusercontent.com/45157374/86798602-eb6dbe80-c0ab-11ea-86cb-23cc73b472c1.png" width="80%"></img>
 
-## 🤙 Code Convention
+
+
+
+
+## ✔️ Code Convention
 * camelcase 사용(단, DB 관련 내용은 snakecase 사용)
 
 * var 보다는 let,const 사용
@@ -46,33 +50,42 @@ ex. feat [GET] /test
       docs README
 ```
 
-## 📍 ERDiagram
+
+
+
+## ✔️ ERDiagram
 
 <img src="https://github.com/Booster-developer/Booster-SERVER/blob/dev/images/Booster_ERD.png" width="80%"/>
 
-## 🗂 dependencies module(package.json)
 
-```json
-"dependencies": {
-    "aws-sdk": "^2.709.0",
-    "cookie-parser": "~1.4.4",
-    "debug": "~2.6.9",
-    "ejs": "~2.6.1",
-    "express": "~4.16.1",
-    "http-errors": "~1.6.3",
-    "jsonwebtoken": "^8.5.1",
-    "moment": "^2.27.0",
-    "morgan": "~1.9.1",
-    "multer": "^1.4.2",
-    "multer-s3": "^2.9.0",
-    "nodemon": "^2.0.4",
-    "promise-mysql": "^4.1.3",
-    "python-shell": "^2.0.1",
-    "rand-token": "^1.0.1"
-  }
-```
 
-## 🔆 Team Role
+
+
+## ✔️ dependencies module(package.json)
+
+| Name                                 | Version              |
+| ------------------------------------ | --------------------------- |
+| aws-sdk          | ^2.709.0          |
+|  cookie-parser                |  ~1.4.4                 |
+|  debug                |    ~2.6.9               |
+|   ejs               |     ~2.6.1              |
+|   express               |    ~4.16.1               |
+|  http-errors                |       ~1.6.3            |
+|   jsonwebtoken               |   ^8.5.1                |
+|   moment               |       ^2.27.0            |
+|   morgan               |    ~1.9.1               |
+|  multer                |    ^1.4.2               |
+|   multer-s3               |     ^2.0.4              |
+|  nodemon                |    ^2.0.4               |
+|  promise-mysql                |  ^4.1.3                 |
+|  python-shell                |   ^2.0.1                |
+|  rand-token                |  ^1.0.1                 |
+|                  |                   |
+
+
+
+
+## ✔️ Team Role
 
 * 심다은
   * DB 설계
@@ -80,7 +93,11 @@ ex. feat [GET] /test
 * 천명희
   * DB 설계
   
-## ✔️ 핵심 기능 설명
+  
+  
+  
+  
+## ✔️ Main Function
 
 * 매장 찾아보기(리스트,지도)
 
@@ -100,13 +117,19 @@ ex. feat [GET] /test
   * 사용자가 주문한 인쇄 현황을 프로세스 바를 통해 한눈에 살펴 볼 수 있습니다.
 
 
-## 🛠 기능 명세서 및 역할 분담
+
+
+
+
+## ✔️ 기능 명세서 및 역할 분담
 
 <img src="https://github.com/Booster-developer/Booster-SERVER/blob/dev/images/%EA%B8%B0%EB%8A%A5%EB%AA%85%EC%84%B8%EC%84%9C_%EB%B0%8F_%EC%97%AD%ED%95%A0%EB%B6%84%EB%8B%B4.png"/>
 
 
 
-## 👩‍💻 Developer
+
+
+## ✔️ Developer
 
 * [심다은](https://github.com/DaEunShim)
 * [천명희](https://github.com/Haeeul)
