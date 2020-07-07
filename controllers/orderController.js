@@ -16,7 +16,7 @@ exports.registerStore = async (req,res)=>{
 
 exports.registerFile = async (req,res)=>{
     try{
-        const file_idx = await order.registerFile(req, order_idx);
+        const file_idx = await order.registerFile(req);
 
         // 성공
         return res.status(statusCode.OK).send(util.success(statusCode.OK,responseMessage.REGISTER_FILE_ORDER_SUCCESS, {file_idx: file_idx}));
