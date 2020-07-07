@@ -31,8 +31,9 @@ module.exports = {
     REGISTER_STORE_ORDER_SUCCESS:'매장 주문 등록 성공',
     REGISTER_FILE_ORDER_SUCCESS:'매장, 파일 주문 등록 성공',
     REGISTER_OPTIONS_ORDER_SUCCESS:'옵션 선택에 따른 가격 정보 제공 성공',
-    REGISTER_ORDER_REQUEST_SUCCESS:'주문 요청사항 등록 성공',
+    REGISTER_ORDER_REQUEST_SUCCESS:'주문 요청사항 등 성공',
     READ_WAITING_LIST_SUCCESS: '대기하기 리스트 가져오기 성공',
+    READ_PAYMENT_INFO_SUCCESS: '결제 진행 정보 가져오기 성공',
 
    DB_ERROR: 'DB 오류'
 };

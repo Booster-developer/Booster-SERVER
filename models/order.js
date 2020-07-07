@@ -92,3 +92,29 @@ exports.readFileInfo = async (req, res)=> {
     }
 };
 
+exports.readPaymentInfo = async (req, res)=> {
+    const query = `SELECT store_name, store_idx, user_point 
+                FROM (Booster.ORDER JOIN Booster.STORE USING(store_idx) 
+                JOIN Booster.USER USING(user_idx)) 
+                WHERE order_idx = ${req.params.order_idx};`;
+    try {
+        const result = await pool.queryParam(query);
+        return result[0];
+    } catch (err) {
+        console.log('ERROR : ', err);
+        throw err;
+    }
+};
+
+exports.readFileOption = async (req, res)=> {
+    const query = `SELECT file_name, file_color, file_direction, file_sided_type, file_collect, file_range_start, file_range_end, file_copy_number, file_price 
+                FROM Booster.FILE JOIN Booster.ORDER USING(order_idx) 
+                WHERE order_idx = ${req.params.order_idx};`;
+    try {
+        const result = await pool.queryParam(query);
+        return result;
+    } catch (err) {
+        console.log('ERROR : ', err);
+        throw err;
+    }
+};

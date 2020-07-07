@@ -97,3 +97,35 @@ exports.readWaitingList = async (req,res)=>{
         throw err;
     }
 };
+
+exports.readPaymentInfo = async (req,res)=>{
+    try{
+        const resultInfo = await order.readPaymentInfo(req);
+        const fileOption = await order.readFileOption(req);
+        let order_price=0;
+        fileOption.forEach(function (element) {
+            order_price += element.file_price;
+            // 파일 페이지 범위
+            // 전체 인쇄일 경우
+            if(element.file_range_end === 0) element.file_range= '전체 페이지';
+            // 범위 설정 인쇄일 경우
+            else element.file_range = element.file_range_end +'~'+ element.file_range_start;
+            delete element.file_range_end;
+            delete element.file_range_start;
+        })
+        const result = {
+            store_name: resultInfo.store_name,
+            store_idx: resultInfo.store_idx,
+            fileOption,
+            order_price: order_price,
+            user_point: resultInfo.user_point,
+            user_remain_point: resultInfo.user_point - order_price
+        }
+
+        // 성공
+        return res.status(statusCode.OK).send(util.success(statusCode.OK,responseMessage.READ_PAYMENT_INFO_SUCCESS, result));
+    } catch(err){
+        return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR, err.message));
+        throw err;
+    }
+};

@@ -9,5 +9,6 @@ router.post('/:order_idx/file', checkToken, upload.single('file'), orderControll
 router.get('/:file_idx/options', checkToken, orderController.registerOptions);
 router.put('/:order_idx/request', checkToken, orderController.registerOrderRequest);
 router.get('/:order_idx/list', checkToken, orderController.readWaitingList);
+router.get('/:order_idx/payment', checkToken, orderController.readPaymentInfo);
 
 module.exports = router;
