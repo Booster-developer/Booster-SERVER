@@ -10,3 +10,14 @@ exports.readProgressList = async (req, res)=> {
         throw err;
     }
 };
+
+exports.readProgressDetailList = async (req, res)=> {
+    const query = `SELECT order_idx, store_name order_store_name, order_state, engine_time order_time, order_comment, file_name, file_color, file_range_start, file_range_end, file_sided_type, file_direction, file_collect, file_copy_number FROM ((Booster.ORDER JOIN Booster.FILE USING(order_idx)) JOIN Booster.STORE USING(store_idx)) JOIN Booster.ENGINE USING(order_idx) WHERE user_idx = ${req.user_idx} AND order_idx = ${req.params.order_idx}`;
+
+    try {
+        return await pool.queryParam(query);
+    } catch (err) {
+        console.log('ERROR : ', err);
+        throw err;
+    }
+};
