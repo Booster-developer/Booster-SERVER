@@ -1,6 +1,5 @@
 # 🚀We are BOOSTER SERVER🚀
 
-
 ## BOOSTER - 빠르게 출력하는 편리함
 
 > SOPT 26기 Appjam '부스터'
@@ -14,8 +13,8 @@
 <img src="https://github.com/Booster-developer/Booster-SERVER/blob/dev/images/main.png" ></img>
 
 
-
-
+## [✔️ API Docs 바로가기](https://github.com/Booster-developer/Booster-SERVER/wiki)
+<br>
 
 ## ✔️ Code Convention
 * camelcase 사용(단, DB 관련 내용은 snakecase 사용)
@@ -87,13 +86,14 @@ ex. feat [GET] /test
     * 매장 상세 페이지 
     * 즐겨찾기 등록 및 해지
   * 주문
-    * 매장 등록
-    * 파일 등록
-    * 옵션 선택에 따른 가격 정보 제공
+    * 매장 정보 주문
+    * 파일 정보 주문
+    * 옵션 선택 주문
     * 대기하기 리스트
     * 팝업 옵션 정보 
     * 결제 진행 정보
-    * 주문 요청사항 등록(결제 완료) -> 주문 시간 등록, 내 포인트 업데이트 
+    * 주문 요청사항, 시간 등록
+    * 주문 파일 삭제
   * 주문하기(바로가기 탭)
     * 주문 탭 매장 선택 리스트 
   * 파이썬을 이용하여 pdf파일 전체 페이지 수 반환

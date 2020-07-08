@@ -26,9 +26,9 @@ exports.registerFile = async (req, res)=> {
     }
 };
 
-exports.registerOptions = async (req, res)=> {
+exports.registerOptions = async (req, file_range_start, res)=> {
     const query = `UPDATE FILE SET file_copy_number = ${req.body.file_copy_number}, file_sided_type = "${req.body.file_sided_type}",
-                file_direction= "${req.body.file_direction}", file_range_start=${req.body.file_range_start}, 
+                file_direction= "${req.body.file_direction}", file_range_start=${file_range_start}, 
                 file_range_end= ${req.body.file_range_end}, file_color= "${req.body.file_color}"
                 WHERE file_idx = ${req.params.file_idx};`;
     try {
@@ -49,6 +49,17 @@ exports.getTypePrice = async (req, res)=> {
     try {
         const result = await pool.queryParam(query);
         return result[0];
+    } catch (err) {
+        console.log('ERROR : ', err);
+        throw err;
+    }
+};
+
+exports.saveFilePrice = async (req, file_price, res)=> {
+    const query = `UPDATE Booster.FILE SET file_price= ${file_price}
+                WHERE file_idx = ${req.params.file_idx}`;
+    try {
+        await pool.queryParam(query);
     } catch (err) {
         console.log('ERROR : ', err);
         throw err;
@@ -152,3 +163,13 @@ exports.readFileOption2 = async (req, res)=> {
         throw err;
     }
 };
+
+exports.deleteFile = async (req, res) => {
+    const query = `DELETE FROM Booster.FILE WHERE file_idx= ${req.params.file_idx};`;
+    try{
+        await pool.queryParam(query);
+    } catch (err) {
+        console.log('ERROR : ', err);
+        throw err;
+    }
+}

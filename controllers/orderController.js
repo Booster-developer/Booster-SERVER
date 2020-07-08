@@ -30,10 +30,17 @@ exports.registerFile = async (req,res)=>{
 
 
 exports.registerOptions = async (req,res)=>{
-    const {file_color, file_direction, file_sided_type, file_collect, file_range_start, file_range_end, file_copy_number} = req.body;
+    let {file_color, file_direction, file_sided_type, file_collect, file_range_start, file_range_end, file_copy_number} = req.body;
     try{
+
+        // 전체 페이지인 경우 -> 총 페이지 수 계산
+        if(file_range_end === 0 && file_range_start === 0 ) {
+            file_range_start = await getPage();
+            console.log(file_range_start);
+        }
+
         // 옵션 선택 정보 저장
-        await order.registerOptions(req);
+        await order.registerOptions(req, file_range_start);
 
         // 페이지 수 계산
         let page = Math.ceil((file_range_end - file_range_start + 1)/file_collect);
@@ -54,9 +61,11 @@ exports.registerOptions = async (req,res)=>{
             if(file_sided_type ==="단면") PRICE = page * price_type.price_gray_single;
             else PRICE = page * price_type.price_gray_double;
         }
+        // 파일 주문 가격 저장
+        await order.saveFilePrice(req, PRICE);
 
         // 성공
-        return res.status(statusCode.OK).send(util.success(statusCode.OK,responseMessage.REGISTER_OPTIONS_ORDER_SUCCESS, {file_price: PRICE}));
+        return res.status(statusCode.OK).send(util.successWithoutData(statusCode.OK,responseMessage.REGISTER_OPTIONS_ORDER_SUCCESS));
     } catch(err){
         return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR, err.message));
         throw err;
@@ -154,10 +163,20 @@ exports.readOptions = async (req,res)=>{
         delete fileOption.file_range_end;
         delete fileOption.file_range_start;
 
-        await getPage();
-
         // 성공
         return res.status(statusCode.OK).send(util.success(statusCode.OK,responseMessage.READ_PAYMENT_INFO_SUCCESS, fileOption));
+    } catch(err){
+        return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR, err.message));
+        throw err;
+    }
+};
+
+exports.deleteFile = async (req,res)=>{
+    try{
+        await order.deleteFile(req);
+
+        // 성공
+        return res.status(statusCode.OK).send(util.successWithoutData(statusCode.OK,responseMessage.DELETE_FILE_SUCCESS));
     } catch(err){
         return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR, err.message));
         throw err;
