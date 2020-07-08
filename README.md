@@ -13,8 +13,8 @@
 <img src="https://github.com/Booster-developer/Booster-SERVER/blob/dev/images/main.png" ></img>
 
 
-## [API Docs](https://github.com/Booster-developer/Booster-SERVER/wiki)
-
+## [✔️ API Docs 바로가기](https://github.com/Booster-developer/Booster-SERVER/wiki)
+<br>
 
 ## ✔️ Code Convention
 * camelcase 사용(단, DB 관련 내용은 snakecase 사용)
