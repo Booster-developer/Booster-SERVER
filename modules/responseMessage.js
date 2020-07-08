@@ -38,5 +38,8 @@ module.exports = {
     READ_WAITING_LIST_SUCCESS: '대기하기 리스트 가져오기 성공',
     READ_PAYMENT_INFO_SUCCESS: '결제 진행 정보 가져오기 성공',
 
+    // 홈 관련
+    READ_SUMMARY_INFO_SUCCESS: '주문 현황 요약 정보 조회 성공',
+
    DB_ERROR: 'DB 오류'
 };
