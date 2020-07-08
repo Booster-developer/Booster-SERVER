@@ -41,6 +41,7 @@ module.exports = {
     READ_PAYMENT_INFO_SUCCESS: '결제 진행 정보 가져오기 성공',
     DELETE_FILE_SUCCESS: '주문 파일 삭제 성공',
     READ_PROGRESS_LIST_SUCCESS: '주문 현황 리스트 가져오기 성공',
+    READ_PROGRESS_DETAIL_LIST_SUCCESS: '주문 현황 상세 리스트 가져오기 성공',
 
     // 홈 관련
     READ_SUMMARY_INFO_SUCCESS: '주문 현황 요약 정보 가져오기 성공',
