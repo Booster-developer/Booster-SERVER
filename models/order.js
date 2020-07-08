@@ -55,6 +55,17 @@ exports.getTypePrice = async (req, res)=> {
     }
 };
 
+exports.saveFilePrice = async (req, file_price, res)=> {
+    const query = `UPDATE Booster.FILE SET file_price= ${file_price}
+                WHERE file_idx = ${req.params.file_idx}`;
+    try {
+        await pool.queryParam(query);
+    } catch (err) {
+        console.log('ERROR : ', err);
+        throw err;
+    }
+};
+
 exports.registerOrderRequest = async (req, res)=> {
     const query = `UPDATE Booster.ORDER SET order_comment="${req.body.order_comment}", order_state=1
                 WHERE order_idx = ${req.params.order_idx}`;
