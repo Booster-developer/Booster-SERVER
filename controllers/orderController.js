@@ -30,10 +30,17 @@ exports.registerFile = async (req,res)=>{
 
 
 exports.registerOptions = async (req,res)=>{
-    const {file_color, file_direction, file_sided_type, file_collect, file_range_start, file_range_end, file_copy_number} = req.body;
+    let {file_color, file_direction, file_sided_type, file_collect, file_range_start, file_range_end, file_copy_number} = req.body;
     try{
+
+        // 전체 페이지인 경우 -> 총 페이지 수 계산
+        if(file_range_end === 0 && file_range_start === 0 ) {
+            file_range_start = await getPage();
+            console.log(file_range_start);
+        }
+
         // 옵션 선택 정보 저장
-        await order.registerOptions(req);
+        await order.registerOptions(req, file_range_start);
 
         // 페이지 수 계산
         let page = Math.ceil((file_range_end - file_range_start + 1)/file_collect);
@@ -155,8 +162,6 @@ exports.readOptions = async (req,res)=>{
         else fileOption.file_range = fileOption.file_range_start +'~'+ fileOption.file_range_end;
         delete fileOption.file_range_end;
         delete fileOption.file_range_start;
-
-        await getPage();
 
         // 성공
         return res.status(statusCode.OK).send(util.success(statusCode.OK,responseMessage.READ_PAYMENT_INFO_SUCCESS, fileOption));
