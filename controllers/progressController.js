@@ -69,3 +69,16 @@ exports.readProgressDetailList = async (req,res)=>{
         throw err;
     }
 };
+
+exports.registerPickUp = async (req,res)=>{
+
+    try{
+        const result = await progress.registerPickUp(req);
+
+        // 성공
+        return res.status(statusCode.OK).send(util.successWithoutData(statusCode.OK,responseMessage.REGISTER_PICKUP_SUCCESS));
+    } catch(err){
+        return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR, err.message));
+        throw err;
+    }
+};
