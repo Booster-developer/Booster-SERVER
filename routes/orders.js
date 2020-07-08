@@ -11,5 +11,6 @@ router.post('/:order_idx/request', checkToken, orderController.registerOrderRequ
 router.get('/:order_idx/list', checkToken, orderController.readWaitingList);
 router.get('/:order_idx/payment', checkToken, orderController.readPaymentInfo);
 router.get('/:file_idx/options', checkToken, orderController.readOptions);
+router.delete('/:file_idx', checkToken, orderController.deleteFile);
 
 module.exports = router;
