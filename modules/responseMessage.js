@@ -30,6 +30,7 @@ module.exports = {
     REGISTER_STORE_FAVORITE_SUCCESS: '매장 즐겨찾기 등록 성공',
     CANCLE_STORE_FAVORITE_SUCCESS: '매장 즐겨찾기 해지 성공',
     ALREADY_REGISTERED_STORE_FAVORITE: '이미 즐겨찾기 등록된 매장입니다.',
+    READ_ORDER_TAB_STORE_LIST_SUCCESS:'주문 탭 매장 선택 리스트 성공',
 
     // 주문 관련
     REGISTER_STORE_ORDER_SUCCESS:'매장 주문 등록 성공',

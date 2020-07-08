@@ -67,3 +67,44 @@ exports.cancleFavorite = async (req, res) => {
         throw err;
     }
 }
+
+
+exports.readOrderRecentStore = async (req, res) => {
+    const query = `SELECT store_idx, store_name, store_image, store_address 
+                FROM Booster.ORDER JOIN Booster.STORE USING(store_idx) 
+                WHERE user_idx = ${req.user_idx} ORDER BY order_idx DESC;`;
+    try{
+        const result = await pool.queryParam(query);
+        return result[0];
+    } catch (err) {
+        console.log('ERROR : ', err);
+        throw err;
+    }
+}
+
+exports.readOrderFavoriteStore = async (req, res) => {
+    const query = `SELECT Booster.STORE.store_idx, store_name, store_image, store_address 
+                FROM (Booster.USER JOIN Booster.STORE USING(univ_idx)) 
+                JOIN Booster.FAVORITE USING(user_idx) 
+                WHERE user_idx = ${req.user_idx} AND Booster.STORE.store_idx = Booster.FAVORITE.store_idx;`;
+    try{
+        const result = await pool.queryParam(query);
+        return result;
+    } catch (err) {
+        console.log('ERROR : ', err);
+        throw err;
+    }
+}
+
+exports.readOrderAllStore = async (req, res) => {
+    const query = `SELECT store_idx, store_name, store_image, store_address 
+                FROM Booster.USER JOIN Booster.STORE USING(univ_idx) 
+                WHERE user_idx = ${req.user_idx};`;
+    try{
+        const result = await pool.queryParam(query);
+        return result;
+    } catch (err) {
+        console.log('ERROR : ', err);
+        throw err;
+    }
+}
