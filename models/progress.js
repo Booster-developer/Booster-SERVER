@@ -21,3 +21,14 @@ exports.readProgressDetailList = async (req, res)=> {
         throw err;
     }
 };
+
+exports.registerPickUp = async (req, res)=> {
+    const query = `UPDATE Booster.ORDER SET order_state = 4 WHERE user_idx = ${req.user_idx} AND order_idx = ${req.params.order_idx}`;
+
+    try {
+        return await pool.queryParam(query);
+    } catch (err) {
+        console.log('ERROR : ', err);
+        throw err;
+    }
+};
