@@ -51,7 +51,17 @@ exports.isFavorite = async (req, res) => {
 exports.registerFavorite = async (req, res) => {
     const query = `INSERT INTO Booster.FAVORITE(user_idx, store_idx) VALUES(${req.user_idx},${req.params.store_idx});`;
     try{
-        const result = await pool.queryParam(query);
+        await pool.queryParam(query);
+    } catch (err) {
+        console.log('ERROR : ', err);
+        throw err;
+    }
+}
+
+exports.cancleFavorite = async (req, res) => {
+    const query = `DELETE FROM Booster.FAVORITE WHERE user_idx= ${req.user_idx} AND store_idx=${req.params.store_idx};`;
+    try{
+        await pool.queryParam(query);
     } catch (err) {
         console.log('ERROR : ', err);
         throw err;

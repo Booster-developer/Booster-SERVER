@@ -54,9 +54,11 @@ exports.registerOptions = async (req,res)=>{
             if(file_sided_type ==="단면") PRICE = page * price_type.price_gray_single;
             else PRICE = page * price_type.price_gray_double;
         }
+        // 파일 주문 가격 저장
+        await order.saveFilePrice(req, PRICE);
 
         // 성공
-        return res.status(statusCode.OK).send(util.success(statusCode.OK,responseMessage.REGISTER_OPTIONS_ORDER_SUCCESS, {file_price: PRICE}));
+        return res.status(statusCode.OK).send(util.successWithoutData(statusCode.OK,responseMessage.REGISTER_OPTIONS_ORDER_SUCCESS));
     } catch(err){
         return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR, err.message));
         throw err;
