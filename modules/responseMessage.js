@@ -28,6 +28,7 @@ module.exports = {
     READ_UNIV_LIST_SUCCESS: '대학교 리스트 가져오기 성공',
     READ_STORE_DETAIL_SUCCESS: '매장 상세 페이 가져오기 성공',
     REGISTER_STORE_FAVORITE_SUCCESS: '매장 즐겨찾기 등록 성공',
+    CANCLE_STORE_FAVORITE_SUCCESS: '매장 즐겨찾기 해지 성공',
     ALREADY_REGISTERED_STORE_FAVORITE: '이미 즐겨찾기 등록된 매장입니다.',
 
     // 주문 관련
