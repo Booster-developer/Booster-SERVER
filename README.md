@@ -1,6 +1,5 @@
 # 🚀We are BOOSTER SERVER🚀
 
-
 ## BOOSTER - 빠르게 출력하는 편리함
 
 > SOPT 26기 Appjam '부스터'
@@ -14,7 +13,7 @@
 <img src="https://github.com/Booster-developer/Booster-SERVER/blob/dev/images/main.png" ></img>
 
 
-
+## [API Docs](https://github.com/Booster-developer/Booster-SERVER/wiki)
 
 
 ## ✔️ Code Convention
