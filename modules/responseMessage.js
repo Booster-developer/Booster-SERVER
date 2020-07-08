@@ -40,6 +40,7 @@ module.exports = {
     READ_WAITING_LIST_SUCCESS: '대기하기 리스트 가져오기 성공',
     READ_PAYMENT_INFO_SUCCESS: '결제 진행 정보 가져오기 성공',
     DELETE_FILE_SUCCESS: '주문 파일 삭제 성공',
+    UNSUPPORTED_TYPE: '지원하지 않는 확장자입니다',
 
    DB_ERROR: 'DB 오류'
 };
