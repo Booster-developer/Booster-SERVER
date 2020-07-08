@@ -140,7 +140,7 @@ exports.readPaymentInfo = async (req, res)=> {
 };
 
 exports.readFileOption = async (req, res)=> {
-    const query = `SELECT file_name, file_color, file_direction, file_sided_type, file_collect, file_range_start, file_range_end, file_copy_number, file_price 
+    const query = `SELECT file_name, file_extension, file_color, file_direction, file_sided_type, file_collect, file_range_start, file_range_end, file_copy_number, file_price 
                 FROM Booster.FILE JOIN Booster.ORDER USING(order_idx) 
                 WHERE order_idx = ${req.params.order_idx};`;
     try {
