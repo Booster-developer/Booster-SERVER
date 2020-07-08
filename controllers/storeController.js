@@ -5,9 +5,10 @@ const store = require('../models/store');
 
 exports.readStoreList = async (req,res)=>{
     try{
-        // 정렬(운영 중 즐겨찾기 매장 - 운영 중 일반 매장 - 미운영 중 즐겨찾기 매장 - 미운영 중 일반 매)
-        // 즐겨찾기, 운영  컬럼 넣
+        // 정렬(운영 중 즐겨찾기 매장 - 운영 중 일반 매장 - 미운영 중 즐겨찾기 매장 - 미운영 중 일반 매장)
+        // 즐겨찾기, 운영 컬럼 넣기
         const result = await store.readStoreList(req);
+        //store_favorite, store_open
 
         // 성공
         return res.status(statusCode.OK).send(util.success(statusCode.OK,responseMessage.READ_STORE_LIST_SUCCESS, result));
