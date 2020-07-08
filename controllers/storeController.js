@@ -54,7 +54,7 @@ exports.registerFavorite = async (req, res) => {
         // 즐겨찾기 등록
         else {
             await store.registerFavorite(req);
-            return res.status(statusCode.OK).send(util.successWithoutData(statusCode.OK,responseMessage.REGISTER_STORE_FAVORITE_SUCCESS));
+            return res.status(statusCode.OK).send(util.successWithoutData(statusCode.CREATED,responseMessage.REGISTER_STORE_FAVORITE_SUCCESS));
         }
 
     } catch(err){

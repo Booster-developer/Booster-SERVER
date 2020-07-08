@@ -38,6 +38,7 @@ module.exports = {
     REGISTER_ORDER_REQUEST_SUCCESS:'주문 요청사항 등록 성공',
     READ_WAITING_LIST_SUCCESS: '대기하기 리스트 가져오기 성공',
     READ_PAYMENT_INFO_SUCCESS: '결제 진행 정보 가져오기 성공',
+    DELETE_FILE_SUCCESS: '주문 파일 삭제 성공',
 
    DB_ERROR: 'DB 오류'
 };

@@ -163,3 +163,13 @@ exports.readFileOption2 = async (req, res)=> {
         throw err;
     }
 };
+
+exports.deleteFile = async (req, res) => {
+    const query = `DELETE FROM Booster.FILE WHERE file_idx= ${req.params.file_idx};`;
+    try{
+        await pool.queryParam(query);
+    } catch (err) {
+        console.log('ERROR : ', err);
+        throw err;
+    }
+}
