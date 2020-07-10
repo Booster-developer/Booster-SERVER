@@ -1,10 +1,12 @@
 #!/usr/bin/env python
 
+import urllib.request
 import pdftotext
+import sys
 
-file = open("/Users/daeun/Desktop/Booster/Booster-SERVER/modules/test.pdf", 'rb')
+url = sys.argv[1]
+file = urllib.request.urlopen(url)
 fileReader = pdftotext.PDF(file)
-
 print(format(len(fileReader)))
 
 

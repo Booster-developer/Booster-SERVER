@@ -26,6 +26,17 @@ exports.registerFile = async (req, file_name, type, res)=> {
     }
 };
 
+exports.getFilePath = async (req, res)=> {
+    const query = `SELECT file_path FROM Booster.FILE WHERE file_idx = ${req.params.file_idx};`;
+    try {
+        const result = await pool.queryParam(query);
+        return result[0];
+    } catch (err) {
+        console.log('ERROR : ', err);
+        throw err;
+    }
+};
+
 exports.registerOptions = async (req, file_range_start, res)=> {
     const query = `UPDATE FILE SET file_copy_number = ${req.body.file_copy_number}, file_sided_type = "${req.body.file_sided_type}",
                 file_direction= "${req.body.file_direction}", file_range_start=${file_range_start}, 
