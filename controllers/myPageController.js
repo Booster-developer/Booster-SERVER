@@ -28,3 +28,35 @@ exports.updateProfile = async (req,res)=>{
         throw err;
     }
 };
+
+exports.readEngineHistory = async (req,res)=>{
+    const result = [];
+
+    try{
+        const myEngineHistory = await myPage.readEngineHistory(req);
+
+        myEngineHistory.forEach(function (engine, index) {
+            let costSign = 0;
+            if(!myEngineHistory[index].order_idx){
+                costSign = 1;
+                myEngineHistory[index].engine_store_name = '엔진 충전'
+            }
+
+            result[index] = {
+                engine_sign: costSign,
+                engine_cost: myEngineHistory[index].engine_cost,
+                engine_time: myEngineHistory[index].engine_time,
+                engine_store_name: myEngineHistory[index].engine_store_name
+            };
+        });
+
+        // 성공
+        return res.status(statusCode.OK).send(util.success(statusCode.OK,responseMessage.READ_ENGINE_HISTORY_SUCCESS,{
+            engine_point: myEngineHistory[0].engine_point,
+            engine_list: result
+        }));
+    } catch(err){
+        return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR, err.message));
+        throw err;
+    }
+};
