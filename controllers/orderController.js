@@ -25,7 +25,6 @@ exports.registerFile = async (req,res)=>{
 
         // 확장자 제거 파일명
         const file_name = req.file.originalname.split('.')[0];
-        console.log(file_name);
 
         const file_idx = await order.registerFile(req, file_name, type);
         // 성공
@@ -40,18 +39,20 @@ exports.registerFile = async (req,res)=>{
 exports.registerOptions = async (req,res)=>{
     let {file_color, file_direction, file_sided_type, file_collect, file_range_start, file_range_end, file_copy_number} = req.body;
     try{
-
+        const pdf = await order.getFilePath(req);
         // 전체 페이지인 경우 -> 총 페이지 수 계산
         if(file_range_end === 0 && file_range_start === 0 ) {
-            file_range_start = await getPage();
-            console.log(file_range_start);
+            file_range_start = await getPage(pdf.file_path);
         }
 
         // 옵션 선택 정보 저장
         await order.registerOptions(req, file_range_start);
 
         // 페이지 수 계산
-        let page = Math.ceil((file_range_end - file_range_start + 1)/file_collect);
+        let page;
+        if(file_range_end ===0) page = Math.ceil(file_range_start/file_collect );
+        else page = Math.ceil((file_range_end - file_range_start + 1)/file_collect);
+
         if(file_sided_type !== "단면")
             page = Math.ceil(page/2);
         page = page * file_copy_number;
