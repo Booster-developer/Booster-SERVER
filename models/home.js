@@ -1,6 +1,6 @@
 const pool = require('../modules/pool');
 
-exports.getSummaryInfo = async (req, res)=> {
+exports.readSummaryInfo = async (req, res)=> {
     const query = `SELECT order_state, COUNT(*) count FROM Booster.ORDER WHERE user_idx = ${req.user_idx} GROUP BY order_state`;
 
     try {

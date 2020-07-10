@@ -3,11 +3,11 @@ const statusCode = require('../modules/statusCode');
 const util = require('../modules/util');
 const home = require('../models/home');
 
-exports.getSummaryInfo = async (req,res)=>{
+exports.readSummaryInfo = async (req,res)=>{
     const result = [];
 
     try{
-        const myOrderState = await home.getSummaryInfo(req);
+        const myOrderState = await home.readSummaryInfo(req);
 
         myOrderState.forEach(function (order, index) {
             result[myOrderState[index].order_state] = myOrderState[index].count;

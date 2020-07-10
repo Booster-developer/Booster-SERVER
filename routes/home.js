@@ -3,6 +3,6 @@ var router = express.Router();
 const checkToken = require('../middelwares/checkToken').checkToken;
 const homeController = require('../controllers/homeController');
 
-router.get('/orders', checkToken, homeController.getSummaryInfo);
+router.get('/orders', checkToken, homeController.readSummaryInfo);
 
 module.exports = router;
