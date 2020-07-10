@@ -95,6 +95,7 @@ exports.signIn = async (req,res)=>{
 
         // 성공
         return res.status(statusCode.OK).send(util.success(statusCode.OK,responseMessage.LOGIN_SUCCESS, {
+            university_idx: userResult[0].univ_idx,
             accessToken: token
         }));
 
