@@ -21,3 +21,14 @@ exports.readEngineHistory = async (req)=> {
         throw err;
     }
 };
+
+exports.readNoticeHistory = async (req)=> {
+    const query = `SELECT order_idx notice_idx, order_complete_time notice_time FROM Booster.ORDER WHERE order_state = 3 AND user_idx = ${req.user_idx}`;
+
+    try {
+        return await pool.queryParam(query);
+    } catch (err) {
+        console.log('ERROR : ', err);
+        throw err;
+    }
+};
