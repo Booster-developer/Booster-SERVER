@@ -14,8 +14,8 @@ exports.registerStore = async (req, res)=> {
     }
 };
 
-exports.registerFile = async (req, res)=> {
-    const query = `INSERT INTO Booster.FILE(order_idx, file_name, file_path) VALUES(${req.params.order_idx},"${req.file.originalname}","${req.file.location}");`;
+exports.registerFile = async (req, file_name, type, res)=> {
+    const query = `INSERT INTO Booster.FILE(order_idx, file_name, file_path, file_extension) VALUES(${req.params.order_idx},"${file_name}","${req.file.location}", "${type}");`;
     try {
         const result = await pool.queryParam(query);
         const file_idx = result.insertId;
@@ -114,7 +114,7 @@ exports.readStoreInfo = async (req, res)=> {
 };
 
 exports.readFileInfo = async (req, res)=> {
-    const query = `SELECT file_idx, file_name, file_path, file_price FROM Booster.FILE JOIN Booster.ORDER USING(order_idx) 
+    const query = `SELECT file_idx, file_name, file_extension, file_path, file_price FROM Booster.FILE JOIN Booster.ORDER USING(order_idx) 
                 WHERE order_idx = ${req.params.order_idx};`;
     try {
         const result = await pool.queryParam(query);
@@ -140,7 +140,7 @@ exports.readPaymentInfo = async (req, res)=> {
 };
 
 exports.readFileOption = async (req, res)=> {
-    const query = `SELECT file_name, file_color, file_direction, file_sided_type, file_collect, file_range_start, file_range_end, file_copy_number, file_price 
+    const query = `SELECT file_name, file_extension, file_color, file_direction, file_sided_type, file_collect, file_range_start, file_range_end, file_copy_number, file_price 
                 FROM Booster.FILE JOIN Booster.ORDER USING(order_idx) 
                 WHERE order_idx = ${req.params.order_idx};`;
     try {

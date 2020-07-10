@@ -45,7 +45,8 @@ module.exports = {
     REGISTER_PICKUP_SUCCESS: '픽업 완료 처리 성공',
 
     // 홈 관련
-    READ_SUMMARY_INFO_SUCCESS: '주문 현황 요약 정보 조회 성공',
+    READ_SUMMARY_INFO_SUCCESS: '주문 현황 요약 정보 가져오기 성공',
+    UNSUPPORTED_TYPE: '지원하지 않는 확장자입니다',
 
     // 마이 페이지 관련
     UPDATE_PROFILE_SUCCESS: '프로필 수정 성공',

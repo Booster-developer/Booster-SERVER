@@ -18,8 +18,16 @@ exports.registerStore = async (req,res)=>{
 
 exports.registerFile = async (req,res)=>{
     try{
-        const file_idx = await order.registerFile(req);
+        // type check
+        const type = req.file.mimetype.split('/')[1];
+        if( type !== 'jpeg' && type !== 'jpg' && type !== 'png' && type !== 'pdf')
+            return res.status(statusCode.OK).send(util.fail(statusCode.BAD_REQUEST,responseMessage.UNSUPPORTED_TYPE));
 
+        // 확장자 제거 파일명
+        const file_name = req.file.originalname.split('.')[0];
+        console.log(file_name);
+
+        const file_idx = await order.registerFile(req, file_name, type);
         // 성공
         return res.status(statusCode.OK).send(util.success(statusCode.OK,responseMessage.REGISTER_FILE_ORDER_SUCCESS, {file_idx: file_idx}));
     } catch(err){

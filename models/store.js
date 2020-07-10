@@ -1,8 +1,27 @@
 const pool = require('../modules/pool');
 
 exports.readStoreList = async (req, res)=> {
-    const query = `SELECT store_idx, store_name, store_image, store_location, price_color_double, price_color_single, price_gray_double, price_gray_single
-                   FROM STORE INNER JOIN PRICE USING(price_idx) WHERE univ_idx = ${req.params.univ_idx};`;
+    const query = `SELECT store_idx, store_name, store_time_weekdays, store_time_saturday, store_time_sunday, store_image, store_location, price_color_double, price_color_single, price_gray_double, price_gray_single 
+                FROM Booster.STORE JOIN Booster.PRICE USING(price_idx) 
+                WHERE univ_idx = ${req.params.univ_idx} 
+                AND store_idx NOT IN (
+                    SELECT store_idx FROM (Booster.STORE JOIN Booster.FAVORITE USING(store_idx)) 
+                    JOIN Booster.PRICE USING(price_idx) 
+                    WHERE univ_idx = ${req.params.univ_idx} AND user_idx = ${req.user_idx});`;
+    try {
+        const result = await pool.queryParam(query);
+        return result;
+    } catch (err) {
+        console.log('ERROR : ', err);
+        throw err;
+    }
+};
+
+exports.readFavoriteStoreList = async (req, res)=> {
+    const query = `SELECT store_idx, store_name, store_time_weekdays, store_time_saturday, store_time_sunday, store_image, store_location, price_color_double, price_color_single, price_gray_double, price_gray_single 
+                FROM (Booster.STORE JOIN Booster.FAVORITE USING(store_idx)) 
+                JOIN Booster.PRICE USING(price_idx) 
+                WHERE univ_idx = ${req.params.univ_idx} AND user_idx = ${req.user_idx};`;
     try {
         const result = await pool.queryParam(query);
         return result;
