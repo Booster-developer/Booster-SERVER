@@ -66,7 +66,7 @@ exports.readNoticeHistory = async (req,res)=>{
         const result = await myPage.readNoticeHistory(req);
 
         // 성공
-        return res.status(statusCode.OK).send(util.success(statusCode.OK,responseMessage.UPDATE_PROFILE_SUCCESS,result));
+        return res.status(statusCode.OK).send(util.success(statusCode.OK,responseMessage.DELETE_ORDER_SUCCESS,result));
     } catch(err){
         return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR, err.message));
         throw err;

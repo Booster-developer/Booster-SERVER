@@ -51,6 +51,7 @@ module.exports = {
     // 마이 페이지 관련
     UPDATE_PROFILE_SUCCESS: '프로필 수정 성공',
     READ_ENGINE_HISTORY_SUCCESS: '나의 엔진 사용 내역 가져오기 성공',
+    DELETE_ORDER_SUCCESS: '주문 취소 성공',
 
    DB_ERROR: 'DB 오류'
 };
