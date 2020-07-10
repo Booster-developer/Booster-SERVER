@@ -43,6 +43,7 @@ module.exports = {
     READ_PROGRESS_LIST_SUCCESS: '주문 현황 리스트 가져오기 성공',
     READ_PROGRESS_DETAIL_LIST_SUCCESS: '주문 현황 상세 리스트 가져오기 성공',
     REGISTER_PICKUP_SUCCESS: '픽업 완료 처리 성공',
+    DELETE_ORDER_SUCCESS: '주문 취소 성공',
 
     // 홈 관련
     READ_SUMMARY_INFO_SUCCESS: '주문 현황 요약 정보 가져오기 성공',
@@ -51,7 +52,7 @@ module.exports = {
     // 마이 페이지 관련
     UPDATE_PROFILE_SUCCESS: '프로필 수정 성공',
     READ_ENGINE_HISTORY_SUCCESS: '나의 엔진 사용 내역 가져오기 성공',
-    DELETE_ORDER_SUCCESS: '주문 취소 성공',
+    READ_NOTICE_HISTORY_SUCCESS: '알림 내역 가져오기 성공',
 
    DB_ERROR: 'DB 오류'
 };
