@@ -47,5 +47,8 @@ module.exports = {
     // 홈 관련
     READ_SUMMARY_INFO_SUCCESS: '주문 현황 요약 정보 조회 성공',
 
+    // 마이 페이지 관련
+    UPDATE_PROFILE_SUCCESS: '프로필 수정 성공',
+
    DB_ERROR: 'DB 오류'
 };
