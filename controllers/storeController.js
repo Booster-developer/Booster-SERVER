@@ -2,12 +2,50 @@ const responseMessage = require('../modules/responseMessage');
 const statusCode = require('../modules/statusCode');
 const util = require('../modules/util');
 const store = require('../models/store');
+const moment = require('moment');
 
 exports.readStoreList = async (req,res)=>{
     try{
-        // 정렬(운영 중 즐겨찾기 매장 - 운영 중 일반 매장 - 미운영 중 즐겨찾기 매장 - 미운영 중 일반 매)
-        // 즐겨찾기, 운영  컬럼 넣
-        const result = await store.readStoreList(req);
+        // 정렬(운영 중 즐겨찾기 매장 - 운영 중 일반 매장 - 미운영 중 즐겨찾기 매장 - 미운영 중 일반 매장)
+        // 즐겨찾는 매장 store_favorite =1
+        const result1 = await store.readFavoriteStoreList(req);
+        // 일반 매장 store_favorite = 0
+        const result2 = await store.readStoreList(req);
+
+
+        // store_open
+        // 요일 반환 - 0: 일, 1: 월, 2: 화. 3: 수, 4: 목, 5: 금, 6: 토
+        const nowDay = moment().day();
+        const nowTime = moment().format('HH:mm');
+
+        result1.forEach(function (element) {
+            const storeStartTime = element.store_time_weekdays.split('-')[0];
+            const storeEndTime = element.store_time_weekdays.split('-')[1];
+            // console.log((moment.hour()*60) + moment.minute());
+            // console.log(storeStartTime.duration().asMinutes());
+            // console.log(storeEndTime.duration().asMinutes());
+
+            element.store_open = 1;
+        })
+        if(nowDay === 0) { // 일요일
+            result1.store_open = 1;
+        }
+        else if(nowDay === 6) { // 토요일
+            result1.store_open = 1;
+        }
+        else{ // 평일
+            result1.store_open = 1;
+
+        }
+        delete result1.store_time_sunday;
+        delete result1.store_time_saturday;
+        delete result1.store_time_weekdays;
+        delete result2.store_time_sunday;
+        delete result2.store_time_saturday;
+        delete result2.store_time_weekdays;
+
+
+        const result = {result1 , result2};
 
         // 성공
         return res.status(statusCode.OK).send(util.success(statusCode.OK,responseMessage.READ_STORE_LIST_SUCCESS, result));

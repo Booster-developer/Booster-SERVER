@@ -46,6 +46,7 @@ module.exports = {
 
     // 홈 관련
     READ_SUMMARY_INFO_SUCCESS: '주문 현황 요약 정보 가져오기 성공',
+    UNSUPPORTED_TYPE: '지원하지 않는 확장자입니다',
 
    DB_ERROR: 'DB 오류'
 };
