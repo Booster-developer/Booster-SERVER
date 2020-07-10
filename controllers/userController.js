@@ -10,13 +10,13 @@ exports.signUp = async (req,res)=>{
     const {user_name, user_university, user_id, user_pw} = req.body;
 
     if (!user_name || !user_university || !user_id || !user_pw) {
-        res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
+        res.status(statusCode.OK).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
         return;
     }
 
     //아이디 중복 확인
     if (await user.idCheck(req)) {
-        res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.ALREADY_ID));
+        res.status(statusCode.OK).send(util.fail(statusCode.BAD_REQUEST, responseMessage.ALREADY_ID));
         return;
     }
 
@@ -38,7 +38,7 @@ exports.signUp = async (req,res)=>{
     try{
         const idx = await user.signUp(data);
         if (idx === -1) {
-            return res.status(statusCode.DB_ERROR)
+            return res.status(statusCode.OK)
                 .send(util.fail(statusCode.DB_ERROR, responseMessage.DB_ERROR));
         }
 
@@ -55,7 +55,7 @@ exports.idCheck = async (req,res)=>{
         const result = await user.idCheck(req);
 
         if(result){
-            return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.ALREADY_ID));
+            return res.status(statusCode.OK).send(util.fail(statusCode.BAD_REQUEST, responseMessage.ALREADY_ID));
         }
 
         // 성공
@@ -70,14 +70,14 @@ exports.signIn = async (req,res)=>{
     const { user_id, user_pw } = req.body;
 
     if (!user_id || !user_pw) {
-        res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
+        res.status(statusCode.OK).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
         return;
     }
 
     try{
         const userResult = await user.signIn(req);
         if (userResult[0] === undefined) {
-            return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NO_USER));
+            return res.status(statusCode.OK).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NO_USER));
         }
 
         const hashed = crypto.pbkdf2Sync(
@@ -88,7 +88,7 @@ exports.signIn = async (req,res)=>{
             "sha512").toString("hex");
 
         if (hashed !== userResult[0].user_password) {
-            return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, responseMessage.MISS_MATCH_PW));
+            return res.status(statusCode.OK).send(util.fail(statusCode.BAD_REQUEST, responseMessage.MISS_MATCH_PW));
         }
 
         const {token,_} = await jwt.sign(userResult[0]);
