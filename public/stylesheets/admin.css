@@ -18,7 +18,7 @@ body {
 }
 
 .logout{
-    padding-right: 40px;
+    padding-right: 100px;
 }
 
 .logoutBtn{
@@ -34,7 +34,7 @@ body {
 }
 
 .orderListText{
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     width: 140px;
     width: 120px;
     height: 39px;
@@ -52,12 +52,23 @@ body {
 .stateBtn{
     padding-right: 20px;
     padding-left: 20px;
-    width: 100%;
+    width: 96px;
+    height: 36px;
+    border-radius: 6px;
+    background-color: #467fff;
+    border: none;
+    color: #ffffff;
 }
 
-.tableHead{
-    width: 24px;
-    height: 17px;
+table{
+
+}
+
+
+
+td{
+    border-bottom: solid 1px #d5d5d5;
+    height: 70px;
     font-family: NotoSans;
     font-size: 14px;
     font-weight: normal;
@@ -66,5 +77,4 @@ body {
     line-height: 1.21;
     letter-spacing: normal;
     text-align: left;
-    color: #7d7d7d;
 }
