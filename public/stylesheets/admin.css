@@ -1,0 +1,23 @@
+body {
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.navbar{
+    height: 55px;
+    background: #2645ff;
+}
+
+.navbar_logo{
+    height: 35px;
+    padding-left: 230px;
+}
+
+.logout{
+    padding-right: 230px;
+}
+
+.logoutBtn{
+    color: #ffffff;
+    border: none;
+    background-color: transparent;
+}
