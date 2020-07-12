@@ -14,7 +14,7 @@ exports.readProgressList = async (req,res)=>{
                 order_idx: myProgressList[index].order_idx,
                 order_store_name: myProgressList[index].order_store_name,
                 order_time: myProgressList[index].order_time,
-                order_title: myProgressList[index].order_title+" 외 "+myProgressList[index].count+"건",
+                order_title: myProgressList[index].order_title+'.'+ myProgressList[index].order_extension+' 외 '+myProgressList[index].count+'건',
                 order_state: myProgressList[index].order_state
             };
         });
