@@ -1,0 +1,51 @@
+body {
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+@font-face {
+    font-family: NotoSans;
+    src:url("../fonts/NotoSansRegular.ttf") format('truetype');
+}
+
+.navbar{
+    height: 55px;
+    background: #2645ff;
+}
+
+.navbar_logo{
+    height: 35px;
+    padding-left: 40px;
+}
+
+.logout{
+    padding-right: 40px;
+}
+
+.logoutBtn{
+    color: #ffffff;
+    border: none;
+    background-color: transparent;
+}
+
+.totalBorder{
+    padding: 63px 40px 100px 40px;
+    width: 100%;
+    height: 700px;
+    background: antiquewhite;
+}
+
+.orderListText{
+    margin-bottom: 10px;
+    width: 140px;
+    width: 120px;
+    height: 39px;
+    font-family: NotoSans;
+    font-size: 32px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.19;
+    letter-spacing: normal;
+    text-align: left;
+    color: #467fff;
+}

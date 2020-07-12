@@ -6,12 +6,13 @@ const users = require('./users');
 const home = require('./home');
 const progress = require('./progress');
 const myPage = require('./myPage');
+const admin = require('./admin');
 
 router.use('/stores', stores);
 router.use('/orders', orders);
 router.use('/users', users);
 router.use('/home', home);
 router.use('/progress', progress);
-router.use('/mypage',myPage);
+router.use('/admin',admin);
 
 module.exports = router;
