@@ -11,7 +11,6 @@ exports.readStoreList = async (req,res)=>{
         const result1 = await store.readFavoriteStoreList(req);
         // 일반 매장 store_favorite = 0
         const result2 = await store.readStoreList(req);
-        console.log(result1)
 
         // store_open
         // 요일 반환 - 0: 일, 1: 월, 2: 화. 3: 수, 4: 목, 5: 금, 6: 토
