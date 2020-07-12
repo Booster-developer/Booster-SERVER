@@ -20,6 +20,7 @@ exports.registerFile = async (req,res)=>{
     try{
         // type check
         console.log(req.file);
+        console.log(decodeURI(req.file.originalname))
         const type = req.file.mimetype.split('/')[1];
         if( type !== 'jpeg' && type !== 'jpg' && type !== 'png' && type !== 'pdf')
             return res.status(statusCode.OK).send(util.fail(statusCode.BAD_REQUEST,responseMessage.UNSUPPORTED_TYPE));
