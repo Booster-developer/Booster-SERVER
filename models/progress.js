@@ -32,3 +32,14 @@ exports.registerPickUp = async (req, res)=> {
         throw err;
     }
 };
+
+exports.deleteOrder = async (req, res)=> {
+    const query = `DELETE FROM Booster.ORDER WHERE order_idx = ${req.params.order_idx}`;
+
+    try {
+        return await pool.queryParam(query);
+    } catch (err) {
+        console.log('ERROR : ', err);
+        throw err;
+    }
+};
