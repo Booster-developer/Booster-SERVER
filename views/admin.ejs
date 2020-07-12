@@ -26,7 +26,17 @@
     <div class = "totalBorder">
         <div class="orderListText"> 접수 현황 </div>
         <table>
-            <tr>
+            <colgroup>
+                <col width= 80px />
+                <col width= 160px />
+                <col width= 320px />
+                <col width= 320px />
+                <col width= 160px />
+                <col width= 160px />
+                <col width= 100px/>
+            </colgroup>
+            <thead>
+            <tr class="tableHead">
                 <td> 주문번호 </td>
                 <td> 고객명 </td>
                 <td> 파일명 </td>
@@ -34,6 +44,35 @@
                 <td> 일시 </td>
                 <td> 상태 </td>
                 <td> 버튼 </td>
+            </tr>
+            </thead>
+            <tr style="height: 60px;" >
+                <td> 1 </td>
+                <td> 심다은 </td>
+                <td> helloWorld.png </td>
+                <td> 흑백/자동/단면/4개/4페이지/1부 </td>
+                <td> 2020.07.08 16:20 </td>
+                <td> 승인 필요 </td>
+                <td> <button class = "stateBtn"> 승인 </button> </td>
+            </tr>
+            </thead>
+            <tr style="height: 60px;" >
+                <td> 2 </td>
+                <td> 심다은 </td>
+                <td> helloWorld.png </td>
+                <td> 흑백/자동/단면/4개/4페이지/1부 </td>
+                <td> 2020.07.08 16:20 </td>
+                <td> 승인 필요 </td>
+                <td> <button class = "stateBtn"> 승인 </button> </td>
+            </tr>
+            <tr style="height: 60px;" >
+                <td> 3 </td>
+                <td> 심다은 </td>
+                <td> helloWorld.png </td>
+                <td> 흑백/자동/단면/4개/4페이지/1부 </td>
+                <td> 2020.07.08 16:20 </td>
+                <td> 승인 필요 </td>
+                <td> <button class = "stateBtn"> 승인 </button> </td>
             </tr>
         </table>
     </div>

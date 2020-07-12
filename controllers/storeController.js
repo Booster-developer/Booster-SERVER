@@ -110,7 +110,7 @@ exports.readStoreList = async (req,res)=>{
         })
 
         //  합치기
-        const result= {openFavoriteStore, openStore, closeFavoriteStore, closeStore};
+        const result= openFavoriteStore.concat(openStore.concat(closeFavoriteStore).concat(closeStore));
 
         // 성공
         return res.status(statusCode.OK).send(util.success(statusCode.OK,responseMessage.READ_STORE_LIST_SUCCESS, result));
