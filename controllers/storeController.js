@@ -176,7 +176,9 @@ exports.readOrderStoreList = async (req, res) => {
         // 매장 모두 보기
         const store_all = await store.readOrderAllStore(req);
 
-        const result = {recent_order_store, favorite_store, store_all};
+        let result = [];
+        if(favorite_store[0] === undefined) result = {recent_order_store, store_all};
+        else result = {recent_order_store, favorite_store, store_all};
 
         // 성공
         return res.status(statusCode.OK).send(util.success(statusCode.OK,responseMessage.READ_ORDER_TAB_STORE_LIST_SUCCESS, result));
