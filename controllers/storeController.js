@@ -30,6 +30,14 @@ exports.readStoreList = async (req,res)=>{
                     endTime = element.store_time_sunday.split('~')[1];
                     startTimeMinute = startTime.split(':')[0] * 60 + startTime.split(':')[1];
                     endTimeMinute = endTime.split(':')[0] * 60 + endTime.split(':')[1];
+                    if((nowMinute- startTimeMinute >= 0) && (nowMinute - endTimeMinute <= 0)) {
+                        element.store_open = 1;
+                        openFavoriteStore.push(element);
+                    }
+                    else {
+                        element.store_open = 0;
+                        closeFavoriteStore.push(element);
+                    }
                 }
             }
             else if(nowDay === 6) { // 토요일
@@ -38,7 +46,16 @@ exports.readStoreList = async (req,res)=>{
                     endTime = element.store_time_saturday.split('~')[1];
                     startTimeMinute = startTime.split(':')[0] * 60 + startTime.split(':')[1];
                     endTimeMinute = endTime.split(':')[0] * 60 + endTime.split(':')[1];
+                    if((nowMinute- startTimeMinute >= 0) && (nowMinute - endTimeMinute <= 0)) {
+                        element.store_open = 1;
+                        openFavoriteStore.push(element);
+                    }
+                    else {
+                        element.store_open = 0;
+                        closeFavoriteStore.push(element);
+                    }
                 }
+
             }
             else{ // 평일
                 if(element.store_time_weekdays !== '휴무') {
@@ -46,6 +63,15 @@ exports.readStoreList = async (req,res)=>{
                     endTime = element.store_time_weekdays.split('~')[1];
                     startTimeMinute = startTime.split(':')[0] * 60 + startTime.split(':')[1];
                     endTimeMinute = endTime.split(':')[0] * 60 + endTime.split(':')[1];
+
+                    if((nowMinute- startTimeMinute >= 0) && (nowMinute - endTimeMinute <= 0)) {
+                        element.store_open = 1;
+                        openFavoriteStore.push(element);
+                    }
+                    else {
+                        element.store_open = 0;
+                        closeFavoriteStore.push(element);
+                    }
                 }
             }
 
@@ -53,14 +79,6 @@ exports.readStoreList = async (req,res)=>{
             delete element.store_time_saturday;
             delete element.store_time_sunday;
 
-            if(nowMinute >= startTimeMinute && (nowMinute - endTimeMinute <= 0)) {
-                element.store_open = 1;
-                openFavoriteStore.push(element);
-            }
-            else {
-                element.store_open = 0;
-                closeFavoriteStore.push(element);
-            }
         })
 
         // 일반 매장 - 운영, 미운영
@@ -75,6 +93,14 @@ exports.readStoreList = async (req,res)=>{
                     endTime = element.store_time_sunday.split('~')[1];
                     startTimeMinute = startTime.split(':')[0] * 60 + startTime.split(':')[1];
                     endTimeMinute = endTime.split(':')[0] * 60 + endTime.split(':')[1];
+                    if((nowMinute- startTimeMinute >= 0) && (nowMinute - endTimeMinute <= 0)) {
+                        element.store_open = 1;
+                        openFavoriteStore.push(element);
+                    }
+                    else {
+                        element.store_open = 0;
+                        closeFavoriteStore.push(element);
+                    }
                 }
             }
             else if(nowDay === 6) { // 토요일
@@ -83,6 +109,14 @@ exports.readStoreList = async (req,res)=>{
                     endTime = element.store_time_saturday.split('~')[1];
                     startTimeMinute = startTime.split(':')[0] * 60 + startTime.split(':')[1];
                     endTimeMinute = endTime.split(':')[0] * 60 + endTime.split(':')[1];
+                    if((nowMinute- startTimeMinute >= 0) && (nowMinute - endTimeMinute <= 0)) {
+                        element.store_open = 1;
+                        openFavoriteStore.push(element);
+                    }
+                    else {
+                        element.store_open = 0;
+                        closeFavoriteStore.push(element);
+                    }
                 }
             }
             else{ // 평일
@@ -91,6 +125,14 @@ exports.readStoreList = async (req,res)=>{
                     endTime = element.store_time_weekdays.split('~')[1];
                     startTimeMinute = startTime.split(':')[0] * 60 + startTime.split(':')[1];
                     endTimeMinute = endTime.split(':')[0] * 60 + endTime.split(':')[1];
+                    if((nowMinute- startTimeMinute >= 0) && (nowMinute - endTimeMinute <= 0)) {
+                        element.store_open = 1;
+                        openFavoriteStore.push(element);
+                    }
+                    else {
+                        element.store_open = 0;
+                        closeFavoriteStore.push(element);
+                    }
                 }
             }
 
@@ -98,14 +140,6 @@ exports.readStoreList = async (req,res)=>{
             delete element.store_time_saturday;
             delete element.store_time_sunday;
 
-            if(nowMinute >= startTimeMinute && (nowMinute - endTimeMinute <= 0)) {
-                element.store_open = 1;
-                openStore.push(element);
-            }
-            else {
-                element.store_open = 0;
-                closeStore.push(element);
-            }
         })
 
         //  합치기
