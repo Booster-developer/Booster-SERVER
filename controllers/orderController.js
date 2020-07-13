@@ -22,7 +22,7 @@ exports.registerFile = async (req,res)=>{
         console.log(req.file);
         console.log(decodeURI(req.file.originalname))
         const type = req.file.mimetype.split('/')[1];
-        if( type !== 'jpeg' && type !== 'jpg' && type !== 'png' && type !== 'pdf')
+        if( type !== 'jpeg' && type !== 'jpg' && type !== 'png' && type !== 'pdf' && type !== 'PDF')
             return res.status(statusCode.OK).send(util.fail(statusCode.BAD_REQUEST,responseMessage.UNSUPPORTED_TYPE));
 
         // 확장자 제거 파일명
