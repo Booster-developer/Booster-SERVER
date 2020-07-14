@@ -10,17 +10,29 @@ exports.readProgressList = async (req,res)=>{
         const myProgressList = await progress.readProgressList(req);
 
         myProgressList.forEach(function (order, index) {
-            result[index] = {
-                order_idx: myProgressList[index].order_idx,
-                order_store_name: myProgressList[index].order_store_name,
-                order_time: myProgressList[index].order_time,
-                order_title: myProgressList[index].order_title+'.'+ myProgressList[index].order_extension+' 외 '+myProgressList[index].count+'건',
-                order_state: myProgressList[index].order_state
-            };
+            if(myProgressList[index].count-1 !== 0){
+                result[index] = {
+                    order_idx: myProgressList[index].order_idx,
+                    order_store_name: myProgressList[index].order_store_name,
+                    order_time: myProgressList[index].order_time,
+                    order_title: myProgressList[index].order_title+'.'+ myProgressList[index].order_extension+' 외 '+(myProgressList[index].count-1)+'건',
+                    order_state: myProgressList[index].order_state
+                };
+            }
+            else {
+                result[index] = {
+                    order_idx: myProgressList[index].order_idx,
+                    order_store_name: myProgressList[index].order_store_name,
+                    order_time: myProgressList[index].order_time,
+                    order_title: myProgressList[index].order_title+'.'+ myProgressList[index].order_extension,
+                    order_state: myProgressList[index].order_state
+                };
+            }
         });
 
         // 성공
         return res.status(statusCode.OK).send(util.success(statusCode.OK,responseMessage.READ_PROGRESS_LIST_SUCCESS, {
+            user_name: myProgressList[0].user_name,
             booster_count: result.length,
             order_list: result
         }));
