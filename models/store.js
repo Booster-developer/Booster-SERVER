@@ -43,7 +43,7 @@ exports.readUnivList = async (req, res) => {
 }
 
 exports.readStoreDetail = async (req, res) => {
-    const query = `SELECT store_image, store_name, store_address, store_location, store_time_weekdays, store_time_saturday, store_time_sunday, store_phone_number, price_color_double, price_color_single, price_gray_double, price_gray_single, univ_line 
+    const query = `SELECT store_image, store_name, store_address, store_location, store_time_weekdays, store_time_saturday, store_time_sunday, store_phone_number, price_color_double, price_color_single, price_gray_double, price_gray_single, univ_line, store_x_location, store_y_location 
                 FROM (Booster.STORE JOIN Booster.PRICE USING(price_idx)) JOIN Booster.UNIVERSITY USING(univ_idx) 
                 WHERE store_idx = ${req.params.store_idx};`;
     try{
