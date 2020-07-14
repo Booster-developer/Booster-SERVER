@@ -14,12 +14,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 </head>
 
-<%
-    data.forEach(function (element) {
-        console.log(element.user_name);
-    })
-%>
-
 <body>
 
     <div class = "navbar">
@@ -39,18 +33,18 @@
         <div class="orderListText"> 주문 현황 </div>
         <table>
             <colgroup>
+                <col width= 80px />
+                <col width= 80px />
+                <col width= 240px />
+                <col width= 260px />
+                <col width= 230px />
+                <col width= 155px />
                 <col width= 90px />
-                <col width= 150px />
-                <col width= 320px />
-                <col width= 320px />
-                <col width= 160px />
-                <col width= 30px />
-                <col width= 100px />
-                <col width= 30px />
+                <col width= 90px />
                 <col width= 100px/>
             </colgroup>
             <tr style="color: #7d7d7d;">
-                <td style="text-align: center"> 주문번호 </td>
+                <td style="text-align: center"> 번호 </td>
                 <td> 고객명 </td>
                 <td> 파일명 </td>
                 <td> 옵션 </td>
@@ -74,43 +68,45 @@
                 <td> 승인 필요 </td>
                 <td> <button class = "stateBtn"> 승인 </button> </td>
             </tr>
-            </thead>
-            <tr>
-                <td style="text-align: center"> 3 </td>
-                <td> 심다은 </td>
-                <td> <a href="https://danibucket0731.s3.ap-northeast-2.amazonaws.com/Booster/KakaoTalk_Photo_2020-07-13-04-47-09.png"/>
-                    넣어두세요.png </td>
-                <td> 흑백/자동/단면/4개/4페이지/1부 </td>
-                <td> 스테이플러 찍어 주세요! </td>
-                <td> 2020.07.08 16:20 </td>
-                <td> 1000원 </td>
-                <td> 승인 필요 </td>
-                <td> <button class = "stateBtn"> 승인 </button> </td>
-            </tr>
-            <tr>
-                <td style="text-align: center"> 2 </td>
-                <td> 심다은 </td>
-                <td> <a href="https://danibucket0731.s3.ap-northeast-2.amazonaws.com/Booster/KakaoTalk_Photo_2020-07-13-04-47-09.png"/>
-                    넣어두세요.png </td>
-                <td> 흑백/자동/단면/4개/4페이지/1부 </td>
-                <td> 스테이플러 찍어 주세요! </td>
-                <td> 2020.07.08 16:20 </td>
-                <td> 1000원 </td>
-                <td> 승인 필요 </td>
-                <td> <button class = "stateBtn"> 승인 </button> </td>
-            </tr>
-            <tr>
-                <td style="text-align: center"> 1 </td>
-                <td> 심다은 </td>
-                <td> <a href="https://danibucket0731.s3.ap-northeast-2.amazonaws.com/Booster/KakaoTalk_Photo_2020-07-13-04-47-09.png"/>
-                    넣어두세요.png </td>
-                <td> 흑백/자동/단면/4개/4페이지/1부 </td>
-                <td> 스테이플러 찍어 주세요! </td>
-                <td> 2020.07.08 16:20 </td>
-                <td> 1000원 </td>
-                <td> 승인 필요 </td>
-                <td> <button class = "stateBtn"> 승인 </button> </td>
-            </tr>
+
+            <% data.forEach(function (element, index) { %>
+                <tr>
+                    <td style="text-align: center"> <%= element.order_idx %> </td>
+                    <td> <%= element.user_name %> </td>
+                    <td> <a href="#" download="<%= element.file_name +'.'+ element.file_extension %>"> <%= element.file_name +'.'+ element.file_extension %>
+                            <a href="<%= element.file_path %>"/>
+                        </a></td>
+                    <td> <%= element.file_color + '/'+
+                        element.file_direction + '/'+
+                        element.file_sided_type + '/'+
+                        element.file_collect + '개/'%>
+                        <%if(element.file_range_end === 0){%>전체/<% }
+                         else {%>
+                        <%= element.file_range_start +'-'+ element.file_range_end %>P/<% }%>
+                        <%= element.file_copy_number +'부'
+                        %> </td>
+                    <td> <%= element.order_comment%> </td>
+                    <td> <%= element.engine_time %> </td>
+                    <td> <%= element.file_price +'원' %> </td>
+                    <td> <%
+                            if(element.order_state ===1) {%> 승인 필요 <%}
+                            else if(element.order_state ===2) {%> 인쇄중 <%}
+                            else if(element.order_state ===3) {%> 인쇄 완료 <%}
+                            else if(element.order_state ===4) {%> 접수 완료 <%}
+                            else { %> 접수중 <%}
+                        %> </td>
+                    <td> <button class = "stateBtn"
+                            <%
+                            if(element.order_state ===1) {%> style="background-color: #467fff;">승인 <%}
+                            else if(element.order_state ===2) {%> style="background-color: #2435ff;">인쇄 완료 <%}
+                            else if(element.order_state ===3) {%> style="background-color: #7d7d7d;">픽업 완료 <%}
+                            else  {%> style="background-color: #ffffff;"> <%}
+                            %>
+                        </button> </td>
+                </tr>
+            <% }) %>
+
+
         </table>
     </div>
 </body>
