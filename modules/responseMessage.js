@@ -50,6 +50,7 @@ module.exports = {
     UNSUPPORTED_TYPE: '지원하지 않는 확장자입니다',
 
     // 마이 페이지 관련
+    READ_ENGINE_POINT_SUCCESS: '현재 내 엔진 가져오기 성공',
     UPDATE_PROFILE_SUCCESS: '프로필 수정 성공',
     READ_ENGINE_HISTORY_SUCCESS: '나의 엔진 사용 내역 가져오기 성공',
     READ_NOTICE_HISTORY_SUCCESS: '알림 내역 가져오기 성공',
