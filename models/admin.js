@@ -12,7 +12,7 @@ exports.readStoreName = async (req, res)=> {
 };
 
 exports.readAdminList = async (req, res)=> {
-    const query = `SELECT order_idx, order_state, user_name, engine_time, file_name, file_extension, file_path, file_color, file_direction, file_sided_type, file_collect, file_range_start, file_range_end, file_copy_number 
+    const query = `SELECT order_idx, order_state, order_comment, user_name, engine_time, file_name, file_extension, file_path, file_price, file_color, file_direction, file_sided_type, file_collect, file_range_start, file_range_end, file_copy_number 
                 FROM (((Booster.STORE JOIN Booster.ORDER USING(store_idx)) 
                 JOIN Booster.FILE USING(order_idx)) 
                 JOIN Booster.USER USING(user_idx)) 
