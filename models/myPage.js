@@ -43,3 +43,14 @@ exports.readNoticeHistory = async (req)=> {
         throw err;
     }
 };
+
+exports.updateNoticeConfirm = async (req)=> {
+    const query = `UPDATE Booster.ORDER SET order_notice = 0 WHERE order_idx = ${req.params.order_idx}`;
+
+    try {
+        return await pool.queryParam(query);
+    } catch (err) {
+        console.log('ERROR : ', err);
+        throw err;
+    }
+};

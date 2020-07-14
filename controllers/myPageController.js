@@ -84,3 +84,15 @@ exports.readNoticeHistory = async (req,res)=>{
         throw err;
     }
 };
+
+exports.updateNoticeConfirm = async (req,res)=>{
+    try{
+        await myPage.updateNoticeConfirm(req);
+
+        // 성공
+        return res.status(statusCode.OK).send(util.successWithoutData(statusCode.OK,responseMessage.UPDATE_NOTICE_CONFIRM_SUCCESS));
+    } catch(err){
+        return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR, err.message));
+        throw err;
+    }
+};
