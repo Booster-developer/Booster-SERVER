@@ -13,6 +13,7 @@ router.use('/orders', orders);
 router.use('/users', users);
 router.use('/home', home);
 router.use('/progress', progress);
+router.use('/mypage',myPage);
 router.use('/admin',admin);
 
 module.exports = router;
