@@ -18,7 +18,7 @@ body {
 }
 
 .logout{
-    padding-right: 100px;
+    padding-right: 50px;
 }
 
 .logoutBtn{
@@ -67,7 +67,7 @@ body {
 }
 
 .orderListText{
-    padding-left: 20px;
+    padding-left: 15px;
     margin-top: 30px;
     height: 24px;
     font-family: NotoSans;
@@ -109,4 +109,5 @@ td{
     line-height: 1.21;
     letter-spacing: normal;
     text-align: left;
+    padding-right: 5px;
 }
