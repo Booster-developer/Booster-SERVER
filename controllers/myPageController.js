@@ -16,6 +16,38 @@ exports.readMyProfile = async (req,res)=>{
     }
 };
 
+exports.passwordCheck = async (req,res)=>{
+    if (!req.body.user_pw) {
+        res.status(statusCode.OK).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
+        return;
+    }
+
+    try{
+        const userResult = await myPage.passwordCheck(req);
+        if (userResult[0] === undefined) {
+            return res.status(statusCode.OK).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NO_USER));
+        }
+        console.log(userResult)
+
+        const hashed = crypto.pbkdf2Sync(
+            req.body.user_pw,
+            userResult[0].user_salt,
+            1,
+            32,
+            "sha512").toString("hex");
+
+        if (hashed !== userResult[0].user_password) {
+            return res.status(statusCode.OK).send(util.fail(statusCode.BAD_REQUEST, responseMessage.MISS_MATCH_PW));
+        }
+
+        // 성공
+        return res.status(statusCode.OK).send(util.successWithoutData(statusCode.OK,responseMessage.MATCH_PW));
+    } catch(err){
+        return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR, err.message));
+        throw err;
+    }
+};
+
 exports.updateProfile = async (req,res)=>{
     const {user_name, user_university, user_pw} = req.body;
 
