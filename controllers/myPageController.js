@@ -4,12 +4,12 @@ const util = require('../modules/util');
 const myPage = require('../models/myPage');
 const crypto = require('crypto');
 
-exports.readMyEngine = async (req,res)=>{
+exports.readMyProfile = async (req,res)=>{
     try{
-        const result = await myPage.readMyEngine(req);
+        const result = await myPage.readMyProfile(req);
 
         // 성공
-        return res.status(statusCode.OK).send(util.success(statusCode.OK,responseMessage.READ_ENGINE_POINT_SUCCESS,result));
+        return res.status(statusCode.OK).send(util.success(statusCode.OK,responseMessage.READ_PROFILE_SUCCESS, result[0]));
     } catch(err){
         return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR, err.message));
         throw err;

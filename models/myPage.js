@@ -1,7 +1,7 @@
 const pool = require('../modules/pool');
 
-exports.readMyEngine = async (req, data)=> {
-    const query = `SELECT user_point FROM Booster.USER WHERE user_idx = ${req.user_idx}`;
+exports.readMyProfile = async (req, data)=> {
+    const query = `SELECT user_name, univ_idx, user_id, user_point FROM Booster.USER WHERE user_idx = ${req.user_idx}`;
 
     try {
         return await pool.queryParam(query);
