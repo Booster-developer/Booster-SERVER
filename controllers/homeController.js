@@ -19,8 +19,9 @@ exports.readSummaryInfo = async (req,res)=>{
 
         // 성공
         return res.status(statusCode.OK).send(util.success(statusCode.OK,responseMessage.READ_SUMMARY_INFO_SUCCESS, {
-            home_state: result[result.length -1],
-            summary: result.slice(1,4)
+            home_state: result.slice(1,4).length,
+            //summary: result.slice(1,4),
+            user_name: myOrderState[0].user_name
         }));
     } catch(err){
         return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR, err.message));
