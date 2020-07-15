@@ -34,7 +34,7 @@ exports.readEngineHistory = async (req)=> {
 };
 
 exports.readNoticeHistory = async (req)=> {
-    const query = `SELECT order_notice notice_confirm, order_idx notice_idx, order_complete_time notice_time FROM Booster.ORDER WHERE order_state = 3 AND user_idx = ${req.user_idx}`;
+    const query = `SELECT order_notice notice_confirm, order_idx notice_idx, order_complete_time notice_time, store_name FROM Booster.ORDER JOIN Booster.STORE USING(store_idx) WHERE order_state = 3 AND user_idx = ${req.user_idx}`;
 
     try {
         return await pool.queryParam(query);
