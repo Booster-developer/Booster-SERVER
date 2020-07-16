@@ -145,7 +145,7 @@ ex. feat [GET] /test
 
 ## ✔️ 기능 명세서 및 역할 분담
 
-<img src="https://github.com/Booster-developer/Booster-SERVER/blob/dev/images/%EA%B8%B0%EB%8A%A5%EB%AA%85%EC%84%B8%EC%84%9C_%EB%B0%8F_%EC%97%AD%ED%95%A0%EB%B6%84%EB%8B%B4.png"/>
+<img src="https://user-images.githubusercontent.com/46866476/87728169-72820b80-c7fd-11ea-9115-9254576fb952.png"/>
 
 
 
