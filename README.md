@@ -139,13 +139,14 @@ ex. feat [GET] /test
   * 사용자가 주문한 인쇄 현황을 프로세스 바를 통해 한눈에 살펴 볼 수 있습니다.
 <br>
 
-
-
+## ✔️ 사장님 전용 웹페이지
+<img src="https://user-images.githubusercontent.com/46866476/87728510-2aafb400-c7fe-11ea-99dd-1f509adc59a3.png"/>
+<br>
 
 
 ## ✔️ 기능 명세서 및 역할 분담
 
-<img src="https://github.com/Booster-developer/Booster-SERVER/blob/dev/images/%EA%B8%B0%EB%8A%A5%EB%AA%85%EC%84%B8%EC%84%9C_%EB%B0%8F_%EC%97%AD%ED%95%A0%EB%B6%84%EB%8B%B4.png"/>
+<img src="https://user-images.githubusercontent.com/46866476/87728169-72820b80-c7fd-11ea-9115-9254576fb952.png"/>
 
 
 
