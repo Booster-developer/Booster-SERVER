@@ -14,8 +14,8 @@ exports.registerStore = async (req, res)=> {
     }
 };
 
-exports.registerFile = async (req, file_name, type, res)=> {
-    const query = `INSERT INTO Booster.FILE(order_idx, file_name, file_path, file_extension) VALUES(${req.params.order_idx},"${file_name}","${req.file.location}", "${type}");`;
+exports.registerFile = async (req, file_name, type, thumbnail, res)=> {
+    const query = `INSERT INTO Booster.FILE(order_idx, file_name, file_path, file_extension, file_thumbnail_path) VALUES(${req.params.order_idx},"${file_name}","${req.files['file'][0].location}", "${type}", "${thumbnail}");`;
     try {
         const result = await pool.queryParam(query);
         const file_idx = result.insertId;

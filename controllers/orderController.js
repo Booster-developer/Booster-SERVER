@@ -19,16 +19,21 @@ exports.registerStore = async (req,res)=>{
 exports.registerFile = async (req,res)=>{
     try{
         // type check
-        console.log(req.file);
-        console.log(decodeURI(req.file.originalname))
-        const type = req.file.mimetype.split('/')[1];
+        const mainFile = req.files['file'][0];
+
+        let thumbNail="https://danibucket0731.s3.ap-northeast-2.amazonaws.com/Booster/KakaoTalk_Photo_2020-07-13-04-23-01.png";
+        if(req.files['thumbnail'] !== undefined) thumbNail = req.files['thumbnail'][0].location;
+
+
+        const type = mainFile.mimetype.split('/')[1];
         if( type !== 'jpeg' && type !== 'jpg' && type !== 'png' && type !== 'pdf')
             return res.status(statusCode.OK).send(util.fail(statusCode.BAD_REQUEST,responseMessage.UNSUPPORTED_TYPE));
 
         // 확장자 제거 파일명
-        const file_name = req.file.originalname.split('.')[0];
+        const file_name = mainFile.originalname.split('.')[0];
 
-        const file_idx = await order.registerFile(req, file_name, type);
+        const file_idx = await order.registerFile(req, file_name, type, thumbNail);
+
         // 성공
         return res.status(statusCode.OK).send(util.success(statusCode.OK,responseMessage.REGISTER_FILE_ORDER_SUCCESS, {file_idx: file_idx}));
     } catch(err){
