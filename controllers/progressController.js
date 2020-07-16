@@ -8,6 +8,10 @@ exports.readProgressList = async (req,res)=>{
 
     try{
         const myProgressList = await progress.readProgressList(req);
+        // 주문 내역 없는 경우
+        if(myProgressList.length === 0){
+            return res.status(statusCode.OK).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NO_ORDER));
+        }
 
         myProgressList.forEach(function (order, index) {
             if(myProgressList[index].count-1 !== 0){
@@ -49,6 +53,11 @@ exports.readProgressDetailList = async (req,res)=>{
     try{
         const myProgressDetailList = await progress.readProgressDetailList(req);
 
+        // 주문 내역 없는 경우
+        if(myProgressDetailList.length === 0){
+            return res.status(statusCode.OK).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NO_ORDER));
+        }
+
         myProgressDetailList.forEach(function (order, index) {
             result[index] = {
                 file_name: myProgressDetailList[index].file_name,
@@ -87,7 +96,7 @@ exports.readProgressDetailList = async (req,res)=>{
 exports.registerPickUp = async (req,res)=>{
 
     try{
-        const result = await progress.registerPickUp(req);
+        await progress.registerPickUp(req);
 
         // 성공
         return res.status(statusCode.OK).send(util.successWithoutData(statusCode.OK,responseMessage.REGISTER_PICKUP_SUCCESS));
