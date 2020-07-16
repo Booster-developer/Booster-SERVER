@@ -26,3 +26,14 @@ exports.readAdminList = async (req, res)=> {
         throw err;
     }
 };
+
+
+exports.updateOrderState = async (req, res)=> {
+    const query = `UPDATE Booster.ORDER SET order_state = ${req.body.order_state} WHERE order_idx = ${req.body.order_idx};`;
+    try {
+        await pool.queryParam(query);
+    } catch (err) {
+        console.log('ERROR : ', err);
+        throw err;
+    }
+};
