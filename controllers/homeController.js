@@ -8,6 +8,10 @@ exports.readSummaryInfo = async (req,res)=>{
 
     try{
         const myOrderState = await home.readSummaryInfo(req);
+        // 주문 내역 없는 경우
+        if(myOrderState){
+            return res.status(statusCode.OK).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NO_ORDER));
+        }
 
         myOrderState.forEach(function (order, index) {
             result[myOrderState[index].order_state] = myOrderState[index].count;
