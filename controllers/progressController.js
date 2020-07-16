@@ -10,7 +10,11 @@ exports.readProgressList = async (req,res)=>{
         const myProgressList = await progress.readProgressList(req);
         // 주문 내역 없는 경우
         if(myProgressList.length === 0){
-            return res.status(statusCode.OK).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NO_ORDER));
+            const user = await progress.readUserName(req);
+            return res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.NO_ORDER,{
+                user_name: user[0].user_name,
+                booster_count: 0
+            }));
         }
 
         myProgressList.forEach(function (order, index) {
