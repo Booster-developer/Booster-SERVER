@@ -6,8 +6,7 @@ exports.signUp = async (data)=> {
     const query = `INSERT INTO ${table}(${fields}) VALUES(${data.user_university}, '${data.user_name}', '${data.user_id}', '${data.user_hashed}', '${data.user_salt}', 0 )`;
     try {
         const result = await pool.queryParam(query);
-        const insertId = result.insertId;
-        return insertId;
+        return result.insertId;
     } catch (err) {
         console.log('ERROR : ', err);
         throw err;
@@ -28,8 +27,7 @@ exports.idCheck = async (req, res)=> {
 exports.signIn = async (req, res)=> {
     const query = `SELECT * FROM ${table} WHERE user_id = '${req.body.user_id}'`;
     try {
-        const result = await pool.queryParam(query);
-        return result;
+        return await pool.queryParam(query);
     } catch (err) {
         console.log('ERROR : ', err);
         throw err;
