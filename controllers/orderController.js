@@ -32,7 +32,20 @@ exports.registerFile = async (req,res)=>{
         // 확장자 제거 파일명
         const file_name = mainFile.originalname.split('.')[0];
 
-        const file_idx = await order.registerFile(req, file_name, type, thumbNail);
+        // default option => 전체 페이지
+        let page=1, file_range_start= 0,file_range_end= 0;
+        if(type === 'pdf'){
+            page = await getPage(mainFile.location);
+        }
+        else{ //이미지
+            file_range_start = 1;
+            file_range_end = 1;
+        }
+
+        // default option => 흑백 단면 가격 가져오기
+        const defaultPrice = await getGraySinglePrice(req) * page;
+
+        const file_idx = await order.registerFile(req, file_name, type, thumbNail, file_range_start, file_range_end, defaultPrice);
 
         // 성공
         return res.status(statusCode.OK).send(util.success(statusCode.OK,responseMessage.REGISTER_FILE_ORDER_SUCCESS, {file_idx: file_idx}));

@@ -14,8 +14,9 @@ exports.registerStore = async (req, res)=> {
     }
 };
 
-exports.registerFile = async (req, file_name, type, thumbnail, res)=> {
-    const query = `INSERT INTO Booster.FILE(order_idx, file_name, file_path, file_extension, file_thumbnail_path) VALUES(${req.params.order_idx},"${file_name}","${req.files['file'][0].location}", "${type}", "${thumbnail}");`;
+exports.registerFile = async (req, file_name, type, thumbnail, file_range_start, file_range_end, defaultPrice, res)=> {
+    const query = `INSERT INTO Booster.FILE(order_idx, file_name, file_path, file_extension, file_thumbnail_path, file_range_start, file_range_end, file_price) 
+    VALUES(${req.params.order_idx},"${file_name}","${req.files['file'][0].location}", "${type}", "${thumbnail}",${file_range_start}, ${file_range_end}, ${defaultPrice});`;
     try {
         const result = await pool.queryParam(query);
         const file_idx = result.insertId;
@@ -184,3 +185,16 @@ exports.deleteFile = async (req, res) => {
         throw err;
     }
 }
+
+exports.getGraySinglePrice = async (req, res)=> {
+    const query = `SELECT price_gray_single FROM (Booster.ORDER JOIN Booster.STORE USING(store_idx)) 
+                JOIN Booster.PRICE USING(price_idx) 
+                WHERE order_idx = ${req.params.order_idx};`;
+    try {
+        const result = await pool.queryParam(query);
+        return result[0].price_gray_single;
+    } catch (err) {
+        console.log('ERROR : ', err);
+        throw err;
+    }
+};
