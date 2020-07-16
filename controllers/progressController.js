@@ -60,6 +60,7 @@ exports.readProgressDetailList = async (req,res)=>{
 
         myProgressDetailList.forEach(function (order, index) {
             result[index] = {
+                file_thumbnail_path: myProgressDetailList[index].file_thumbnail_path,
                 file_name: myProgressDetailList[index].file_name,
                 file_extension: myProgressDetailList[index].file_extension,
                 file_price: myProgressDetailList[index].file_price,
