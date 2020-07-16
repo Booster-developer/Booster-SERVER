@@ -2,6 +2,7 @@ const responseMessage = require('../modules/responseMessage');
 const statusCode = require('../modules/statusCode');
 const util = require('../modules/util');
 const admin = require('../models/admin');
+const moment = require('moment');
 
 exports.readAdminList = async (req,res)=>{
     try{
@@ -19,8 +20,9 @@ exports.readAdminList = async (req,res)=>{
 
 exports.updateOrderState = async (req,res)=>{
     try{
+        const completeTime = moment().format('YYYY.MM.DD HH:mm');
         // state update
-        await admin.updateOrderState(req);
+        await admin.updateOrderState(req, completeTime);
 
         const result1 = await admin.readStoreName(req);
         const result2 = await admin.readAdminList(req);

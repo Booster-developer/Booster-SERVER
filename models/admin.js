@@ -28,8 +28,8 @@ exports.readAdminList = async (req, res)=> {
 };
 
 
-exports.updateOrderState = async (req, res)=> {
-    const query = `UPDATE Booster.ORDER SET order_state = ${req.body.order_state} WHERE order_idx = ${req.body.order_idx};`;
+exports.updateOrderState = async (req, completeTime, res)=> {
+    const query = `UPDATE Booster.ORDER SET order_state = ${req.body.order_state}, order_complete_time = "${completeTime}" WHERE order_idx = ${req.body.order_idx};`;
     try {
         await pool.queryParam(query);
     } catch (err) {
