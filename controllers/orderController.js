@@ -43,7 +43,7 @@ exports.registerFile = async (req,res)=>{
         }
 
         // default option => 흑백 단면 가격 가져오기
-        const defaultPrice = await getGraySinglePrice(req) * page;
+        let defaultPrice = await order.getGraySinglePrice(req) * page;
 
         const file_idx = await order.registerFile(req, file_name, type, thumbNail, file_range_start, file_range_end, defaultPrice);
 
