@@ -98,7 +98,7 @@ exports.readStoreList = async (req,res)=>{
             delete element.store_time_saturday;
             delete element.store_time_sunday;
 
-            if(nowMinute >= startTimeMinute && (nowMinute - endTimeMinute <= 0)) {
+            if((nowMinute- startTimeMinute >= 0)  && (nowMinute - endTimeMinute <= 0)) {
                 element.store_open = 1;
                 openStore.push(element);
             }
