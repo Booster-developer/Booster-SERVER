@@ -139,8 +139,9 @@ ex. feat [GET] /test
   * 사용자가 주문한 인쇄 현황을 프로세스 바를 통해 한눈에 살펴 볼 수 있습니다.
 <br>
 
-
-
+## ✔️ 사장님 전용 웹페이지
+<img src="https://user-images.githubusercontent.com/46866476/87728510-2aafb400-c7fe-11ea-99dd-1f509adc59a3.png"/>
+<br>
 
 
 ## ✔️ 기능 명세서 및 역할 분담
