@@ -9,7 +9,7 @@ exports.readSummaryInfo = async (req,res)=>{
     try{
         const myOrderState = await home.readSummaryInfo(req);
         // 주문 내역 없는 경우
-        if(myOrderState){
+        if(myOrderState.length === 0){
             return res.status(statusCode.OK).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NO_ORDER));
         }
 
