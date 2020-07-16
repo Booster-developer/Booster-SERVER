@@ -10,3 +10,14 @@ exports.readSummaryInfo = async (req, res)=> {
         throw err;
     }
 };
+
+exports.readUserName = async (req, res)=> {
+    const query = `SELECT user_name FROM Booster.USER WHERE user_idx = ${req.user_idx}`;
+
+    try {
+        return await pool.queryParam(query);
+    } catch (err) {
+        console.log('ERROR : ', err);
+        throw err;
+    }
+};

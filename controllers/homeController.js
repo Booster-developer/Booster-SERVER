@@ -10,7 +10,11 @@ exports.readSummaryInfo = async (req,res)=>{
         const myOrderState = await home.readSummaryInfo(req);
         // 주문 내역 없는 경우
         if(myOrderState.length === 0){
-            return res.status(statusCode.OK).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NO_ORDER));
+            const user = await home.readUserName(req);
+            return res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.NO_ORDER,{
+                home_state: 0,
+                user_name: user[0].user_name
+            }));
         }
 
         myOrderState.forEach(function (order, index) {
