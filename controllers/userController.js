@@ -9,6 +9,7 @@ const jwt = require('../modules/jwt');
 exports.signUp = async (req,res)=>{
     const {user_name, user_university, user_id, user_pw} = req.body;
 
+    // 값 확인
     if (!user_name || !user_university || !user_id || !user_pw) {
         res.status(statusCode.OK).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
         return;
@@ -51,6 +52,12 @@ exports.signUp = async (req,res)=>{
 };
 
 exports.idCheck = async (req,res)=>{
+    // 값 확인
+    if (!req.body.user_id) {
+        res.status(statusCode.OK).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
+        return;
+    }
+
     try{
         const result = await user.idCheck(req);
 
@@ -69,6 +76,7 @@ exports.idCheck = async (req,res)=>{
 exports.signIn = async (req,res)=>{
     const { user_id, user_pw } = req.body;
 
+    // 값 확인
     if (!user_id || !user_pw) {
         res.status(statusCode.OK).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
         return;
