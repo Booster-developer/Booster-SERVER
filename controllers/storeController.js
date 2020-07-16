@@ -134,6 +134,43 @@ exports.readStoreDetail = async (req, res) => {
     try{
         const result = await store.readStoreDetail(req);
 
+        const nowDay = moment().day();
+        const nowTime = moment().format('HH:mm');
+        const nowMinute = nowTime.split(':')[0] * 60 + nowTime.split(':')[1];
+
+        let startTime, endTime, startTimeMinute= 0, endTimeMinute= 0;
+        if(nowDay === 0) { // 일요일
+            if(result.store_time_sunday !== '휴무') {
+                startTime = result.store_time_sunday.split('~')[0];
+                endTime = result.store_time_sunday.split('~')[1];
+                startTimeMinute = startTime.split(':')[0] * 60 + startTime.split(':')[1];
+                endTimeMinute = endTime.split(':')[0] * 60 + endTime.split(':')[1];
+            }
+        }
+        else if(nowDay === 6) { // 토요일
+            if(result.store_time_saturday !== '휴무') {
+                startTime = result.store_time_saturday.split('~')[0];
+                endTime = result.store_time_saturday.split('~')[1];
+                startTimeMinute = startTime.split(':')[0] * 60 + startTime.split(':')[1];
+                endTimeMinute = endTime.split(':')[0] * 60 + endTime.split(':')[1];
+            }
+        }
+        else{ // 평일
+            if(result.store_time_weekdays !== '휴무') {
+                startTime = result.store_time_weekdays.split('~')[0];
+                endTime = result.store_time_weekdays.split('~')[1];
+                startTimeMinute = startTime.split(':')[0] * 60 + startTime.split(':')[1];
+                endTimeMinute = endTime.split(':')[0] * 60 + endTime.split(':')[1];
+            }
+        }
+
+        if((nowMinute- startTimeMinute >= 0) && (nowMinute - endTimeMinute <= 0)) {
+            result.store_open = 1;
+        }
+        else {
+            result.store_open = 0;
+        }
+
         // 매장 즐겨찾기 유무
         if(await store.isFavorite(req) === undefined) result.store_favorite = 0;
         else result.store_favorite = 1;
