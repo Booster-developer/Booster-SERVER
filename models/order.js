@@ -90,7 +90,7 @@ exports.registerOrderRequest = async (req, res)=> {
 };
 
 exports.updateEngineInfo = async (req, order_price, order_time, res)=> {
-    const query = `INSERT INTO Booster.ENGINE(order_idx, engine_point, engine_time) VALUES(${req.params.order_idx}, ${order_price}, "${order_time}")`;
+    const query = `INSERT INTO Booster.ENGINE(user_idx, order_idx, engine_point, engine_time) VALUES(${req.user_idx}, ${req.params.order_idx}, ${order_price}, "${order_time}")`;
     try {
         const result = await pool.queryParam(query);
         return result;
