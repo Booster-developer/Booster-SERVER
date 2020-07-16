@@ -61,17 +61,9 @@ ex. feat [GET] /test
 
 
 ## ✔️ dependencies module(package.json)
+<img src="https://user-images.githubusercontent.com/46866476/87726428-f1754500-c7f9-11ea-8d06-bc66b4a46341.png" width="60%">
 
-| Name                                 | Version              || Name                                 | Version              |
-| ------------------------------------ | --------------------------- |-| ------------------------------------ | --------------------------- |
-| aws-sdk          | ^2.709.0          ||  cookie-parser                |  ~1.4.4                 |
-|  debug                |    ~2.6.9               ||   ejs               |     ~2.6.1              |
-|   express               |    ~4.16.1               ||  http-errors                |       ~1.6.3            |
-|   jsonwebtoken               |   ^8.5.1                ||   moment               |       ^2.27.0            |
-|   morgan               |    ~1.9.1               ||  multer                |    ^1.4.2               |
-|   multer-s3               |     ^2.0.4              ||  nodemon                |    ^2.0.4               |
-|  promise-mysql                |  ^4.1.3                 ||  python-shell                |   ^2.0.1                |
-|  rand-token                |  ^1.0.1                 ||  pbkdf2                |   ^3.0.17                |
+
 <br>
 
 
