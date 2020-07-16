@@ -54,7 +54,7 @@ ex. feat [GET] /test
 
 ## ✔️ ERDiagram
 
-<img src="https://github.com/Booster-developer/Booster-SERVER/blob/dev/images/Booster_ERD.png" width="80%"/>
+<img src="https://user-images.githubusercontent.com/46866476/87725895-0dc4b200-c7f9-11ea-8c39-60051d0ffdae.png" width="80%"/>
 <br>
 
 
