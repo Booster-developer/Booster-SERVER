@@ -57,6 +57,7 @@ module.exports = {
     READ_ENGINE_HISTORY_SUCCESS: '나의 엔진 사용 내역 가져오기 성공',
     NO_ENGINE: '엔진 내역이 없습니다.',
     READ_NOTICE_HISTORY_SUCCESS: '알림 내역 가져오기 성공',
+    NO_NOTICE: '알림 내역이 없습니다.',
     UPDATE_NOTICE_CONFIRM_SUCCESS: '알림 내역 확인 처리 성공',
 
     DB_ERROR: 'DB 오류'

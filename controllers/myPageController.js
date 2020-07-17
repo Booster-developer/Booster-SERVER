@@ -77,7 +77,7 @@ exports.readEngineHistory = async (req,res)=>{
     try{
         const myEngineHistory = await myPage.readEngineHistory(req);
 
-        // 주문 내역 없는 경우
+        // 엔진 내역 없는 경우
         if(myEngineHistory.length === 0){
             const user = await myPage.readUserEngine(req);
             return res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.NO_ENGINE,{
@@ -114,6 +114,13 @@ exports.readEngineHistory = async (req,res)=>{
 exports.readNoticeHistory = async (req,res)=>{
     try{
         const result = await myPage.readNoticeHistory(req);
+
+        console.log(result)
+
+        // 알림 내역 없는 경우
+        if(result.length === 0){
+            return res.status(statusCode.OK).send(util.successWithoutData(statusCode.OK, responseMessage.NO_NOTICE,));
+        }
 
         // 성공
         return res.status(statusCode.OK).send(util.success(statusCode.OK,responseMessage.READ_NOTICE_HISTORY_SUCCESS,result));
