@@ -115,8 +115,6 @@ exports.readNoticeHistory = async (req,res)=>{
     try{
         const result = await myPage.readNoticeHistory(req);
 
-        console.log(result)
-
         // 알림 내역 없는 경우
         if(result.length === 0){
             return res.status(statusCode.OK).send(util.successWithoutData(statusCode.OK, responseMessage.NO_NOTICE,));
