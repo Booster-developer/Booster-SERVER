@@ -81,7 +81,8 @@ exports.readEngineHistory = async (req,res)=>{
         if(myEngineHistory.length === 0){
             const user = await myPage.readUserEngine(req);
             return res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.NO_ENGINE,{
-                user_point: user[0].user_point
+                engine_point: user[0].user_point,
+                engine_list: []
             }));
         }
 
