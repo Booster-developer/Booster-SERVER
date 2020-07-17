@@ -61,7 +61,7 @@ ex. feat [GET] /test
 
 
 ## ✔️ dependencies module(package.json)
-<img src="https://user-images.githubusercontent.com/46866476/87726428-f1754500-c7f9-11ea-8d06-bc66b4a46341.png" width="60%">
+<img src="https://user-images.githubusercontent.com/46866476/87726428-f1754500-c7f9-11ea-8d06-bc66b4a46341.png" width="80%">
 
 
 <br>
