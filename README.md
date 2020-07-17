@@ -10,10 +10,14 @@
 
 ## 📈 Workflow
 
-<img src="https://github.com/Booster-developer/Booster-SERVER/blob/dev/images/main.png" ></img>
+<img src="https://user-images.githubusercontent.com/46866476/87736308-bcc1b780-c812-11ea-855c-b9306a894200.jpeg" ></img>
 
 
 ## [✔️ API Docs 바로가기](https://github.com/Booster-developer/Booster-SERVER/wiki)
+<br>
+
+## ✔️ SERVER ARCHITECTURE
+<img src="https://user-images.githubusercontent.com/46866476/87781826-62554500-c86c-11ea-9c23-55442ba8a31b.png"/>
 <br>
 
 ## ✔️ Code Convention

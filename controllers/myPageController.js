@@ -27,7 +27,6 @@ exports.passwordCheck = async (req,res)=>{
         if (userResult[0] === undefined) {
             return res.status(statusCode.OK).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NO_USER));
         }
-        console.log(userResult)
 
         const hashed = crypto.pbkdf2Sync(
             req.body.user_pw,
@@ -52,7 +51,6 @@ exports.updateProfile = async (req,res)=>{
     const {user_name, user_university, user_pw} = req.body;
 
     const data = {user_name, user_university, user_pw};
-    console.log(req.user_pw)
 
     data.user_salt = crypto.randomBytes(32).toString("hex");
     data.user_hashed = crypto.pbkdf2Sync(
@@ -78,6 +76,14 @@ exports.readEngineHistory = async (req,res)=>{
 
     try{
         const myEngineHistory = await myPage.readEngineHistory(req);
+
+        // 엔진 내역 없는 경우
+        if(myEngineHistory.length === 0){
+            const user = await myPage.readUserEngine(req);
+            return res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.NO_ENGINE,{
+                user_point: user[0].user_point
+            }));
+        }
 
         myEngineHistory.forEach(function (engine, index) {
             let costSign = 0;
@@ -108,6 +114,11 @@ exports.readEngineHistory = async (req,res)=>{
 exports.readNoticeHistory = async (req,res)=>{
     try{
         const result = await myPage.readNoticeHistory(req);
+
+        // 알림 내역 없는 경우
+        if(result.length === 0){
+            return res.status(statusCode.OK).send(util.successWithoutData(statusCode.OK, responseMessage.NO_NOTICE,));
+        }
 
         // 성공
         return res.status(statusCode.OK).send(util.success(statusCode.OK,responseMessage.READ_NOTICE_HISTORY_SUCCESS,result));
