@@ -112,8 +112,10 @@ exports.registerOrderRequest = async (req,res)=>{
         })
         await order.updateEngineInfo(req, order_price, orderTime);
 
+        let {order_comment} = req.body.order_comment;
+        if(order_comment === undefined) order_comment = "";
         // 주문 요청 사항 저장, 주문 상태 수
-        await order.registerOrderRequest(req);
+        await order.registerOrderRequest(req, order_comment);
 
         // 내 엔진 업데이트 user
         await order.updateMyEngine(req, order_price);

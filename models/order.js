@@ -78,8 +78,8 @@ exports.saveFilePrice = async (req, file_price, res)=> {
     }
 };
 
-exports.registerOrderRequest = async (req, res)=> {
-    const query = `UPDATE Booster.ORDER SET order_comment="${req.body.order_comment}", order_state=1
+exports.registerOrderRequest = async (req, order_comment, res)=> {
+    const query = `UPDATE Booster.ORDER SET order_comment="${order_comment}", order_state=1
                 WHERE order_idx = ${req.params.order_idx}`;
     try {
         const result = await pool.queryParam(query);
