@@ -27,7 +27,6 @@ exports.passwordCheck = async (req,res)=>{
         if (userResult[0] === undefined) {
             return res.status(statusCode.OK).send(util.fail(statusCode.BAD_REQUEST, responseMessage.NO_USER));
         }
-        console.log(userResult)
 
         const hashed = crypto.pbkdf2Sync(
             req.body.user_pw,
@@ -78,6 +77,14 @@ exports.readEngineHistory = async (req,res)=>{
 
     try{
         const myEngineHistory = await myPage.readEngineHistory(req);
+
+        // 주문 내역 없는 경우
+        if(myEngineHistory.length === 0){
+            const user = await myPage.readUserEngine(req);
+            return res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.NO_ENGINE,{
+                user_point: user[0].user_point
+            }));
+        }
 
         myEngineHistory.forEach(function (engine, index) {
             let costSign = 0;

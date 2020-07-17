@@ -55,6 +55,7 @@ module.exports = {
     READ_PROFILE_SUCCESS: '내 프로필 가져오기 성공',
     UPDATE_PROFILE_SUCCESS: '프로필 수정 성공',
     READ_ENGINE_HISTORY_SUCCESS: '나의 엔진 사용 내역 가져오기 성공',
+    NO_ENGINE: '엔진 내역이 없습니다.',
     READ_NOTICE_HISTORY_SUCCESS: '알림 내역 가져오기 성공',
     UPDATE_NOTICE_CONFIRM_SUCCESS: '알림 내역 확인 처리 성공',
 
