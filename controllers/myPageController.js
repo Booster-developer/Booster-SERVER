@@ -51,7 +51,6 @@ exports.updateProfile = async (req,res)=>{
     const {user_name, user_university, user_pw} = req.body;
 
     const data = {user_name, user_university, user_pw};
-    console.log(req.user_pw)
 
     data.user_salt = crypto.randomBytes(32).toString("hex");
     data.user_hashed = crypto.pbkdf2Sync(
